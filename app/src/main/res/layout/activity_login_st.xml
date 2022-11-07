@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".LoginST">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="backStroke"
+                android:padding="10dp"
+                app:srcCompat="@drawable/ic_baseline_arrow_back_ios_24" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_marginTop="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="bottom"
+            android:paddingStart="5dp"
+            android:paddingEnd="5dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/amaranth"
+                android:paddingStart="10dp"
+                android:text="Login"
+                android:textColor="@color/white"
+                android:textSize="40dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/ralewaysemi"
+                android:paddingStart="10dp"
+                android:paddingBottom="10dp"
+                android:text="Seja bem-vindo de volta!"
+                android:textColor="@color/white"
+                android:textSize="16dp" />
+
+            <LinearLayout
+                android:layout_marginTop="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <EditText
+                    android:id="@+id/etEmail"
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:layout_margin="10dp"
+                    android:layout_marginTop="30dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="@drawable/edittexttheme"
+                    android:ems="10"
+                    android:fontFamily="@font/ralewaysemi"
+                    android:hint="E-mail"
+                    android:inputType="textEmailAddress"
+                    android:paddingStart="10dp"
+                    android:textColorHint="#989898"
+                    android:textSize="13dp"
+                    tools:ignore="TouchTargetSizeCheck" />
+
+                <EditText
+                    android:id="@+id/etSenha"
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:background="@drawable/edittexttheme"
+                    android:ems="10"
+                    android:fontFamily="@font/ralewaysemi"
+                    android:hint="Senha"
+                    android:inputType="textPassword"
+                    android:paddingStart="10dp"
+                    android:textColorHint="#989898"
+                    android:textSize="13dp"
+                    tools:ignore="TouchTargetSizeCheck" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="5dp">
+
+                    <TextView
+
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="start"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginTop="25dp"
+                        android:background="@color/cardview_shadow_start_color"
+                        android:drawableEnd="@drawable/ic_baseline_arrow_forward_ios_24"
+                        android:fontFamily="@font/ralewaysemi"
+                        android:onClick="telaHome"
+                        android:padding="5dp"
+                        android:paddingTop="20dp"
+                        android:text="Entrar"
+                        android:textSize="18dp" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/textView"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
+                            android:layout_marginRight="10dp"
+                            android:gravity="end"
+                            android:text="Esqueceu a senha?"
+                            android:textColor="#37FFFFFF" />
+
+                    </LinearLayout>
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_gravity="center"
+        android:layout_marginBottom="10dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/amaranthbold"
+            android:text="Seu"
+            android:textColor="#37FFFFFF"
+            android:textSize="20dp"
+            app:layout_constraintBottom_toBottomOf="parent" />
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/amaranth"
+            android:text=" Ticket"
+            android:textColor="#37FFFFFF"
+            android:textSize="20dp"
+            app:layout_constraintBottom_toBottomOf="parent" />
+    </LinearLayout>
+</RelativeLayout>

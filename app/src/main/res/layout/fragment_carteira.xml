@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/carteira"
+    tools:context=".fragments.Carteira">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="start"
+            android:background="@drawable/minhacarteirabg2"
+           android:layout_margin="10dp"
+            android:padding="10dp">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:textColor="@color/white"
+                    android:id="@+id/minhac"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@color/cardview_shadow_start_color"
+                    android:fontFamily="@font/ralewaysemi"
+                    android:text="Minha Carteira"
+                    android:textSize="15dp" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:textColor="@color/white"
+                        android:id="@+id/rs"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/ralewaysemi"
+                        android:text="R$ "
+                        android:textSize="30dp" />
+
+                    <TextView
+                        android:textColor="@color/white"
+                        android:id="@+id/value"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/ralewaysemi"
+                        android:text="0,00"
+                        android:textSize="60dp"
+                        android:drawablePadding="10dp"
+                        android:drawableRight="@drawable/ic_baseline_remove_red_eye_24"/>
+                </LinearLayout>
+
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/textView4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Adicionar à Carteira"
+                android:fontFamily="@font/ralewaysemi"
+                android:textSize="16dp"
+                android:background="@drawable/shapezin"
+                android:padding="10dp"
+                android:paddingStart="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="50dp"/>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp">
+
+
+                <LinearLayout
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/minhacarteirabg"
+                    android:orientation="vertical"
+                    android:padding="10dp"
+                    android:layout_margin="20dp"
+                    >
+
+                    <ImageView
+                        android:layout_gravity="center"
+                        android:id="@+id/imageView2"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:background="@drawable/minhacarteirabg"
+                        android:src="@drawable/ic_baseline_credit_card_24" />
+
+                    <TextView
+                        android:padding="5dp"
+                        android:id="@+id/textView5"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Cartão de Crédito"
+                        android:background="@drawable/minhacarteirabg"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_margin="20dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/minhacarteirabg"
+                    android:orientation="vertical"
+                    android:padding="10dp">
+
+                    <ImageView
+                        android:layout_gravity="center"
+                        android:id="@+id/imageView3"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:background="@drawable/minhacarteirabg"
+                        android:src="@drawable/ic_baseline_credit_card_24" />
+
+                    <TextView
+                        android:padding="5dp"
+                        android:id="@+id/textView6"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Cartão de Débito"
+                        android:background="@drawable/minhacarteirabg"/>
+                </LinearLayout>
+
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+</FrameLayout>
