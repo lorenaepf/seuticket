@@ -11,6 +11,7 @@ import android.widget.TextView;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+
 import java.util.ArrayList;
 
 import br.ufc.quixada.myapplicationnn.CrudEvento.CadEvento;
@@ -23,15 +24,16 @@ import br.ufc.quixada.myapplicationnn.Entidades.Usuario;
 import br.ufc.quixada.myapplicationnn.R;
 import br.ufc.quixada.myapplicationnn.TelaEventos;
 
+
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link Perfil#newInstance} factory method to
+ * Use the {@link Profile#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class Perfil extends Fragment {
+public class Profile extends Fragment {
 
     TextView textEmail,textNome,textSenha;
-    TextView btnEditUser,btnCadEvento,btnEditEvento,btnDeleteUser;
+    Button btnEditUser,btnCadEvento,btnEditEvento,btnDeleteUser;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -42,7 +44,7 @@ public class Perfil extends Fragment {
     private Usuario mParam1;
     DAOEvento daoEvento = new DAOEvento();
 
-    public Perfil(){
+    public Profile(){
 
     }
 
@@ -53,8 +55,8 @@ public class Perfil extends Fragment {
      * @return A new instance of fragment Profile.
      */
     // TODO: Rename and change types and number of parameters
-    public static Perfil newInstance(Usuario usuario) {
-        Perfil fragment = new Perfil();
+    public static Profile newInstance(Usuario usuario) {
+        Profile fragment = new Profile();
         Bundle args = new Bundle();
         args.putSerializable(ARG_PARAM1, usuario);
         fragment.setArguments(args);
@@ -73,14 +75,14 @@ public class Perfil extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View v = inflater.inflate(R.layout.fragment_perfil, container, false);
-        btnEditUser = v.findViewById(R.id.edtDU);
-        btnCadEvento = v.findViewById(R.id.edtCadEvento);
+        View v = inflater.inflate(R.layout.fragment_profile, container, false);
+        btnEditUser = v.findViewById(R.id.editBtn);
+        btnCadEvento = v.findViewById(R.id.btnCadEvento);
         btnEditEvento = v.findViewById(R.id.btnEditEvento);
-        //btnDeleteUser = v.findViewById(R.id.btnDeleteUser);
+        btnDeleteUser = v.findViewById(R.id.btnDeleteUser);
 
-        textEmail = v.findViewById(R.id.emailPerfil);
-        textNome = v.findViewById(R.id.nomePerfil);
+        textEmail = v.findViewById(R.id.txtEmail);
+        textNome = v.findViewById(R.id.txtName);
         textSenha = v.findViewById(R.id.texTelaSenha);
 
 
@@ -93,13 +95,13 @@ public class Perfil extends Fragment {
         transfere();
         cadEvento();
         editEvento();
-       // deleteUser();
+        deleteUser();
 
         return v;
     }
 
 
-    public void transfere(){//editar user
+    public void transfere(){
         btnEditUser.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

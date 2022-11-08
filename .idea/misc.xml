@@ -21,18 +21,28 @@
         <entry key="..\:/Users/wtflo/AndroidStudioProjects/Seu Ticket/MyApplicationnn/app/src/main/res/drawable/shapezada.xml" value="0.1285" />
         <entry key="..\:/Users/wtflo/AndroidStudioProjects/Seu Ticket/MyApplicationnn/app/src/main/res/drawable/shapezin.xml" value="0.1445" />
         <entry key="..\:/Users/wtflo/AndroidStudioProjects/Seu Ticket/MyApplicationnn/app/src/main/res/font/font.xml" value="0.12291666666666666" />
+        <entry key="..\:/Users/wtflo/AndroidStudioProjects/Seu Ticket/MyApplicationnn/app/src/main/res/layout/activity_cad_evento.xml" value="0.25" />
         <entry key="..\:/Users/wtflo/AndroidStudioProjects/Seu Ticket/MyApplicationnn/app/src/main/res/layout/activity_cadastrar_st.xml" value="0.2" />
+        <entry key="..\:/Users/wtflo/AndroidStudioProjects/Seu Ticket/MyApplicationnn/app/src/main/res/layout/activity_cadastro.xml" value="0.19384057971014493" />
+        <entry key="..\:/Users/wtflo/AndroidStudioProjects/Seu Ticket/MyApplicationnn/app/src/main/res/layout/activity_compra.xml" value="0.19384057971014493" />
+        <entry key="..\:/Users/wtflo/AndroidStudioProjects/Seu Ticket/MyApplicationnn/app/src/main/res/layout/activity_edit_evento.xml" value="0.19384057971014493" />
+        <entry key="..\:/Users/wtflo/AndroidStudioProjects/Seu Ticket/MyApplicationnn/app/src/main/res/layout/activity_edit_profile.xml" value="0.25" />
+        <entry key="..\:/Users/wtflo/AndroidStudioProjects/Seu Ticket/MyApplicationnn/app/src/main/res/layout/activity_login.xml" value="0.19384057971014493" />
         <entry key="..\:/Users/wtflo/AndroidStudioProjects/Seu Ticket/MyApplicationnn/app/src/main/res/layout/activity_login_st.xml" value="0.25" />
         <entry key="..\:/Users/wtflo/AndroidStudioProjects/Seu Ticket/MyApplicationnn/app/src/main/res/layout/activity_main.xml" value="0.18" />
         <entry key="..\:/Users/wtflo/AndroidStudioProjects/Seu Ticket/MyApplicationnn/app/src/main/res/layout/activity_main_home.xml" value="0.18614130434782608" />
+        <entry key="..\:/Users/wtflo/AndroidStudioProjects/Seu Ticket/MyApplicationnn/app/src/main/res/layout/activity_tela_eventos.xml" value="0.14617486338797814" />
         <entry key="..\:/Users/wtflo/AndroidStudioProjects/Seu Ticket/MyApplicationnn/app/src/main/res/layout/child_recyclerview_items.xml" value="0.22" />
         <entry key="..\:/Users/wtflo/AndroidStudioProjects/Seu Ticket/MyApplicationnn/app/src/main/res/layout/child_recyclerview_items2.xml" value="0.19384057971014493" />
         <entry key="..\:/Users/wtflo/AndroidStudioProjects/Seu Ticket/MyApplicationnn/app/src/main/res/layout/child_recyclerview_items3.xml" value="0.19384057971014493" />
         <entry key="..\:/Users/wtflo/AndroidStudioProjects/Seu Ticket/MyApplicationnn/app/src/main/res/layout/fragment_carrinho.xml" value="0.18614130434782608" />
         <entry key="..\:/Users/wtflo/AndroidStudioProjects/Seu Ticket/MyApplicationnn/app/src/main/res/layout/fragment_carteira.xml" value="0.25" />
-        <entry key="..\:/Users/wtflo/AndroidStudioProjects/Seu Ticket/MyApplicationnn/app/src/main/res/layout/fragment_favoritos.xml" value="0.1" />
+        <entry key="..\:/Users/wtflo/AndroidStudioProjects/Seu Ticket/MyApplicationnn/app/src/main/res/layout/fragment_favoritos.xml" value="0.25" />
         <entry key="..\:/Users/wtflo/AndroidStudioProjects/Seu Ticket/MyApplicationnn/app/src/main/res/layout/fragment_home.xml" value="0.18614130434782608" />
         <entry key="..\:/Users/wtflo/AndroidStudioProjects/Seu Ticket/MyApplicationnn/app/src/main/res/layout/fragment_perfil.xml" value="0.25" />
+        <entry key="..\:/Users/wtflo/AndroidStudioProjects/Seu Ticket/MyApplicationnn/app/src/main/res/layout/fragment_profile.xml" value="0.18" />
+        <entry key="..\:/Users/wtflo/AndroidStudioProjects/Seu Ticket/MyApplicationnn/app/src/main/res/layout/fragment_shopping_car.xml" value="0.19384057971014493" />
+        <entry key="..\:/Users/wtflo/AndroidStudioProjects/Seu Ticket/MyApplicationnn/app/src/main/res/layout/fragment_star.xml" value="0.19384057971014493" />
         <entry key="..\:/Users/wtflo/AndroidStudioProjects/Seu Ticket/MyApplicationnn/app/src/main/res/layout/parent_recyclerview_items.xml" value="0.19384057971014493" />
         <entry key="..\:/Users/wtflo/AndroidStudioProjects/Seu Ticket/MyApplicationnn/app/src/main/res/menu/bottom_navigation_menu.xml" value="0.22083333333333333" />
       </map>

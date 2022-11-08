@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    tools:context=".CadastrarST">
+    tools:context=".CrudUser.Cadastro">
 
 
     <LinearLayout
@@ -63,7 +63,7 @@
                 android:orientation="vertical">
 
                 <EditText
-                    android:id="@+id/etName"
+                    android:id="@+id/edtCadNome"
 
                     android:layout_width="match_parent"
                     android:layout_height="45dp"
@@ -80,7 +80,7 @@
                     tools:ignore="TouchTargetSizeCheck" />
 
                 <EditText
-                    android:id="@+id/etEmail"
+                    android:id="@+id/logEmail"
                     android:layout_width="match_parent"
                     android:layout_height="45dp"
                     android:layout_margin="10dp"
@@ -96,7 +96,7 @@
                     tools:ignore="TouchTargetSizeCheck" />
 
                 <EditText
-                    android:id="@+id/etSenha"
+                    android:id="@+id/logSenha"
                     android:layout_width="match_parent"
                     android:layout_height="45dp"
                     android:layout_margin="10dp"
@@ -113,19 +113,18 @@
 
 
             <TextView
+                android:id="@+id/textCad"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Cadastrar"
-                android:textSize="18dp"
-                android:layout_marginStart="10dp"
-                android:background="@color/cardview_shadow_start_color"
-                android:fontFamily="@font/ralewaysemi"
                 android:layout_gravity="start"
-                android:drawableRight="@drawable/ic_baseline_arrow_forward_ios_24"
+                android:layout_marginStart="10dp"
                 android:layout_marginTop="5dp"
-                android:padding="5dp"/>
-
-
+                android:background="@color/cardview_shadow_start_color"
+                android:drawableRight="@drawable/ic_baseline_arrow_forward_ios_24"
+                android:fontFamily="@font/ralewaysemi"
+                android:padding="5dp"
+                android:text="Cadastrar"
+                android:textSize="18dp" />
 
 
         </LinearLayout>

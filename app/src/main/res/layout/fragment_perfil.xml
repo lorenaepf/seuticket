@@ -73,7 +73,7 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/textView7"
+                    android:id="@+id/nomePerfil"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/ralewaybold"
@@ -82,7 +82,7 @@
                     android:textSize="25dp" />
 
                 <TextView
-                    android:id="@+id/textView8"
+                    android:id="@+id/emailPerfil"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/ralewaysemi"
@@ -101,7 +101,7 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/textView9"
+                android:id="@+id/edtDU"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/cardview_shadow_start_color"
@@ -112,7 +112,7 @@
                 android:textSize="17dp" />
 
             <TextView
-                android:id="@+id/textView10"
+                android:id="@+id/texTelaSenha"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
@@ -124,7 +124,7 @@
                 android:textSize="17dp" />
             <TextView
                 android:layout_marginTop="5dp"
-                android:id="@+id/textView11"
+                android:id="@+id/edtCadEvento"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/cardview_shadow_start_color"
@@ -135,7 +135,7 @@
                 android:textSize="17dp" />
             <TextView
                 android:layout_marginTop="5dp"
-                android:id="@+id/textView12"
+                android:id="@+id/btnEditEvento"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/cardview_shadow_start_color"
