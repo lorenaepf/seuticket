@@ -50,7 +50,7 @@ public class Perfil extends Fragment {
      * Use this factory method to create a new instance of
      * this fragment using the provided parameters.
      *er 2.
-     * @return A new instance of fragment Profile.
+     * @return A new instance of fragment Perfil.
      */
     // TODO: Rename and change types and number of parameters
     public static Perfil newInstance(Usuario usuario) {

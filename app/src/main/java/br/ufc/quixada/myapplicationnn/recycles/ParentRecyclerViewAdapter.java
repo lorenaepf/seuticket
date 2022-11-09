@@ -15,10 +15,11 @@ import br.ufc.quixada.myapplicationnn.R;
 
 public class ParentRecyclerViewAdapter extends RecyclerView.Adapter<ParentRecyclerViewAdapter.MyViewHolder> {
     private ArrayList<ParentModel> parentModelArrayList;
+    RecyclerViewClickListener listener;
 
     public Context cxt;
 
-    public static class MyViewHolder extends RecyclerView.ViewHolder {
+    public class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         public TextView category;
         public RecyclerView childRecyclerView;
 
@@ -27,12 +28,20 @@ public class ParentRecyclerViewAdapter extends RecyclerView.Adapter<ParentRecycl
 
             category = itemView.findViewById(R.id.tipoLista);
             childRecyclerView = itemView.findViewById(R.id.Child_RV);
+
+            itemView.setOnClickListener(this);
+        }
+
+        @Override
+        public void onClick(View view) {
+            listener.onClick(itemView,getAdapterPosition());
         }
     }
 
-    public ParentRecyclerViewAdapter(ArrayList<ParentModel> exampleList, Context context) {
+    public ParentRecyclerViewAdapter(ArrayList<ParentModel> exampleList, Context context,RecyclerViewClickListener listener) {
         this.parentModelArrayList = exampleList;
         this.cxt = context;
+        this.listener = listener;
 
     }
 
@@ -95,7 +104,8 @@ public class ParentRecyclerViewAdapter extends RecyclerView.Adapter<ParentRecycl
             holder.childRecyclerView.setAdapter(childRecyclerViewAdapter);
         }
 
-
-
+    }
+    public interface RecyclerViewClickListener{
+        void onClick(View v, int position);
     }
 }

@@ -1,5 +1,6 @@
 package br.ufc.quixada.myapplicationnn.fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,7 +14,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
+import br.ufc.quixada.myapplicationnn.CrudEvento.CadEvento;
 import br.ufc.quixada.myapplicationnn.R;
+import br.ufc.quixada.myapplicationnn.TelaEventos;
 import br.ufc.quixada.myapplicationnn.recycles.ParentModel;
 import br.ufc.quixada.myapplicationnn.recycles.ParentRecyclerViewAdapter;
 
@@ -24,6 +27,8 @@ public class Home extends Fragment {
     ArrayList<ParentModel> parentModelArrayList = new ArrayList<>();
     private RecyclerView.LayoutManager parentLayoutManager;
 
+    private RecyclerView recyclerView;
+    private ParentRecyclerViewAdapter.RecyclerViewClickListener listener;
 
     private static final String ARG_PARAM1 = "email";
     private static final String ARG_PARAM2 = "senha";
@@ -64,14 +69,24 @@ public class Home extends Fragment {
         parentModelArrayList.add(new ParentModel("O que você procura?"));
         parentModelArrayList.add(new ParentModel("Eventos em destaque"));
         parentModelArrayList.add(new ParentModel("O melhor de cada lugar"));
+
+        setOnClickListener();
         parentRecyclerView = v.findViewById(R.id.Parent_recyclerView);
         parentRecyclerView.setHasFixedSize(true);
         parentLayoutManager = new LinearLayoutManager(v.getContext());
-        ParentAdapter = new ParentRecyclerViewAdapter(parentModelArrayList, v.getContext());
+        ParentAdapter = new ParentRecyclerViewAdapter(parentModelArrayList, v.getContext(),listener);
         parentRecyclerView.setLayoutManager(parentLayoutManager);
         parentRecyclerView.setAdapter(ParentAdapter);
         ParentAdapter.notifyDataSetChanged();
     }
-
+    public void setOnClickListener(){
+        listener = new ParentRecyclerViewAdapter.RecyclerViewClickListener() {
+            @Override
+            public void onClick(View v, int position) {
+                Intent intent = new Intent(getActivity(), CadEvento.class);
+                startActivity(intent);
+            }
+        };
+    }
 
 }

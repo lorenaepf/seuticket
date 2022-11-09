@@ -7,11 +7,13 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
 
+import br.ufc.quixada.myapplicationnn.CrudUser.Cadastro;
 import br.ufc.quixada.myapplicationnn.Entidades.Usuario;
 
 public class LoginST extends AppCompatActivity {
@@ -20,6 +22,7 @@ public class LoginST extends AppCompatActivity {
 
     String email,senha,nome;//cria user
     EditText edtEmail, edtSenha; //loga
+    ImageView volta;
     Button button;
     TextView login;
 
@@ -40,6 +43,15 @@ public class LoginST extends AppCompatActivity {
 
         }
         login = findViewById(R.id.textLogin);
+        volta = findViewById(R.id.retorna);
+
+        volta.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(LoginST.this, Cadastro.class);
+                startActivity(intent);
+            }
+        });
         Logar();
 
     }
