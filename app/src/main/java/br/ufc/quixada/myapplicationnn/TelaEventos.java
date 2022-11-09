@@ -63,7 +63,7 @@ public class TelaEventos extends AppCompatActivity {
                 adicionaEvento(daoEvento);
 
             }else{
-                Evento teste = new Evento("festival","30/10","quixada","ce","10.00","festival");
+                Evento teste = new Evento("festival","30/10","16Hrs","quixada","ce","10.00","festival");
                 eventos.add(teste);
             }
 
@@ -89,7 +89,7 @@ public class TelaEventos extends AppCompatActivity {
 
     }
     public void adicionaEvento(DAOEvento daoEvento){
-        Evento teste = new Evento("festival","30/10","quixada","ce","10.00","festival");
+        Evento teste = new Evento("festival","30/10","16Hrs","quixada","ce","10.00","festival");
         eventos = daoEvento.getEventos();
         eventos.add(teste);
     }

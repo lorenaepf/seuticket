@@ -14,7 +14,7 @@ import br.ufc.quixada.myapplicationnn.R;
 
 public class EditEvento extends AppCompatActivity {
     Evento evento = new Evento();
-    EditText nomeText,dataHoraText,cidadeText,estadoText,valorText,tipoText;
+    EditText nomeText,dataText,horaText,cidadeText,estadoText,valorText,tipoText;
     Button button;
 
     @Override
@@ -27,7 +27,8 @@ public class EditEvento extends AppCompatActivity {
         evento = (Evento)intent.getSerializableExtra("evento");
 
         nomeText = findViewById(R.id.EdtNomeEvento);
-        dataHoraText = findViewById(R.id.EdtdataHora);
+        dataText = findViewById(R.id.EdtData);
+        horaText = findViewById(R.id.EdtHora);
         cidadeText = findViewById(R.id.Edtcidade);
         estadoText = findViewById(R.id.Edtestado);
         valorText = findViewById(R.id.EdtvalorTicket);
@@ -40,13 +41,14 @@ public class EditEvento extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 String nomeModificado = nomeText.getText().toString();
-                String dataHoraModificada = dataHoraText.getText().toString();
+                String dataModificada = dataText.getText().toString();
+                String horaModificada = horaText.getText().toString();
                 String cidadeModificada = cidadeText.getText().toString();
                 String estadoModificado = estadoText.getText().toString();
                 String valorModificado = valorText.getText().toString();
                 String tipoModificado = tipoText.getText().toString();
 
-                mudaEvento(nomeModificado, dataHoraModificada,
+                mudaEvento(nomeModificado,dataModificada,horaModificada,
                         cidadeModificada,estadoModificado,
                         valorModificado,tipoModificado);
 
@@ -55,15 +57,16 @@ public class EditEvento extends AppCompatActivity {
     }
     public void preencheCampos(){
         nomeText.setText(evento.getNomeEvento());
-        dataHoraText.setText(evento.getdataHora());
+        dataText.setText(evento.getData());
+        horaText.setText(evento.getHora());
         cidadeText.setText(evento.getCidade());
         estadoText.setText(evento.getEstado());
         valorText.setText(evento.getValor());
         tipoText.setText(evento.getTipo());
     }
-    public void mudaEvento(String nome,String data, String cidade, String estado, String valor,String tipo){
+    public void mudaEvento(String nome,String data, String hora,String cidade, String estado, String valor,String tipo){
         Intent intent = new Intent();
-        Evento eventoMod = new Evento(nome,data,cidade,estado,valor,tipo);
+        Evento eventoMod = new Evento(nome,data,hora,cidade,estado,valor,tipo);
         intent.putExtra("eventoMod",eventoMod);
 
         setResult(RESULT_OK,intent);

@@ -20,7 +20,7 @@ import br.ufc.quixada.myapplicationnn.TelaEventos;
 
 public class CadEvento extends AppCompatActivity {
 
-    EditText nomeText,dataHoraText,cidadeText,estadoText,valorText,tipoText;
+    EditText nomeText,dataText,horaText,cidadeText,estadoText,valorText,tipoText;
     Button button;
     DAOEvento daoEvento = new DAOEvento();
     ArrayList<Evento> lau = new ArrayList<>();
@@ -38,7 +38,8 @@ public class CadEvento extends AppCompatActivity {
         setContentView(R.layout.activity_cad_evento);
 
         nomeText = findViewById(R.id.EdtNomeEvento);
-        dataHoraText = findViewById(R.id.EdtdataHora);
+        dataText = findViewById(R.id.CadData);
+        horaText = findViewById(R.id.CadHora);
         cidadeText = findViewById(R.id.Edtcidade);
         estadoText = findViewById(R.id.Edtestado);
         valorText = findViewById(R.id.EdtvalorTicket);
@@ -75,20 +76,22 @@ public class CadEvento extends AppCompatActivity {
 
     public void adicionaEvento(){
         String nomeOrg = nomeText.getText().toString();
-        String dataHora = dataHoraText.getText().toString();
+        String data = dataText.getText().toString();
+        String hora = horaText.getText().toString();
         String cidade = cidadeText.getText().toString();
         String estado = estadoText.getText().toString();
         String valor = valorText.getText().toString();
         String tipo = tipoText.getText().toString();
 
         nomeText.setText("");
-        dataHoraText.setText("");
+        dataText.setText("");
+        horaText.setText("");
         cidadeText.setText("");
         estadoText.setText("");
         valorText.setText("");
         tipoText.setText("");
 
-        Evento evento = new Evento(nomeOrg,dataHora,cidade,estado,valor,tipo);
+        Evento evento = new Evento(nomeOrg,data,hora,cidade,estado,valor,tipo);
         daoEvento.addEvento(evento);
 
         Intent intent = new Intent(CadEvento.this, TelaEventos.class);

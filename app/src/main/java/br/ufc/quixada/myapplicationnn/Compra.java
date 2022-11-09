@@ -31,6 +31,6 @@ public class Compra extends AppCompatActivity {
     }
 
     public void preencheCampo(){
-        ingressoText.setText(evento.getNomeEvento()+"\n"+evento.getdataHora()+"\nValor: "+evento.getValor());
+        ingressoText.setText(evento.getNomeEvento()+"\n"+evento.getData()+"\nValor: "+evento.getValor());
     }
 }

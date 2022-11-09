@@ -53,7 +53,7 @@
                 android:orientation="horizontal">
 
                 <EditText
-                    android:id="@+id/EdtdataHora"
+                    android:id="@+id/CadData"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
 
@@ -62,7 +62,7 @@
                     android:inputType="textPersonName" />
 
                 <EditText
-                    android:id="@+id/edtdataHora"
+                    android:id="@+id/CadHora"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
 
