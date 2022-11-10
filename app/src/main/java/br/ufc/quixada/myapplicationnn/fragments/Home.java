@@ -83,7 +83,7 @@ public class Home extends Fragment {
         listener = new ParentRecyclerViewAdapter.RecyclerViewClickListener() {
             @Override
             public void onClick(View v, int position) {
-                Intent intent = new Intent(getActivity(), CadEvento.class);
+                Intent intent = new Intent(getActivity(), TelaEventos.class);
                 startActivity(intent);
             }
         };

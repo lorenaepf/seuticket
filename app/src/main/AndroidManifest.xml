@@ -14,7 +14,9 @@
         android:theme="@style/Theme.MyApplicationnn"
         tools:targetApi="31">
 
-
+        <activity
+            android:name=".CrudUser.Cadastro"
+            android:exported="false"/>
         <activity
             android:name=".CrudEvento.CadEvento"
             android:exported="false" />
@@ -34,16 +36,13 @@
             android:name=".TelaEventos"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
-            android:exported="false" />
-        <activity
             android:name=".MainActivityHome"
             android:exported="false" />
         <activity
             android:name=".LoginST"
             android:exported="false" />
         <activity
-            android:name=".CrudUser.Cadastro"
+            android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

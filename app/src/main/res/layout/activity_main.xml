@@ -26,11 +26,11 @@
                 android:gravity="center"
                 android:orientation="vertical">
 
-            <ImageView
-                android:layout_width="220dp"
-                android:layout_height="170dp"
-                android:scaleType="fitXY"
-                app:srcCompat="@drawable/icon" />
+                <ImageView
+                    android:layout_width="220dp"
+                    android:layout_height="170dp"
+                    android:scaleType="fitXY"
+                    app:srcCompat="@drawable/icon"/>
 
                 <LinearLayout
                     android:layout_width="wrap_content"
@@ -38,21 +38,21 @@
                     android:layout_gravity="center"
                     android:gravity="center"
                     android:orientation="horizontal">
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Seu"
-                android:textColor="@color/white"
-                android:fontFamily="@font/amaranthbold"
-                android:textSize="40dp"/>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Seu"
+                        android:textColor="@color/white"
+                        android:fontFamily="@font/amaranthbold"
+                        android:textSize="40dp"/>
 
-            <TextView
-                android:textColor="@color/white"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text=" Ticket"
-                android:fontFamily="@font/amaranth"
-                android:textSize="40dp"/>
+                    <TextView
+                        android:textColor="@color/white"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text=" Ticket"
+                        android:fontFamily="@font/amaranth"
+                        android:textSize="40dp"/>
 
 
                 </LinearLayout>
@@ -60,21 +60,19 @@
             </LinearLayout>
 
             <Button
-                android:id="@+id/btnCadastro"
+                android:id="@+id/botaoCadastro"
                 android:layout_width="220dp"
                 android:layout_height="45dp"
                 android:fontFamily="@font/ralewaybold"
-                android:onClick="telaCadastro"
                 android:text="Cadastrar"
                 tools:ignore="TouchTargetSizeCheck" />
 
             <Button
-                android:id="@+id/button4"
+                android:id="@+id/botaoEntrar"
                 android:layout_width="220dp"
                 android:layout_height="45dp"
                 android:backgroundTint="@color/white"
                 android:fontFamily="@font/ralewaybold"
-                android:onClick="telaLogin"
                 android:text="Entrar"
                 android:textColor="@color/black"
                 tools:ignore="TouchTargetSizeCheck" />
