@@ -18,6 +18,7 @@ import br.ufc.quixada.myapplicationnn.CrudUser.Cadastro;
 import br.ufc.quixada.myapplicationnn.CrudUser.EditProfile;
 import br.ufc.quixada.myapplicationnn.CrudUser.EditarSenha;
 import br.ufc.quixada.myapplicationnn.DAOEvento;
+import br.ufc.quixada.myapplicationnn.DAOUsuario;
 import br.ufc.quixada.myapplicationnn.Entidades.Evento;
 import br.ufc.quixada.myapplicationnn.Entidades.Usuario;
 import br.ufc.quixada.myapplicationnn.R;
@@ -41,6 +42,9 @@ public class Perfil extends Fragment {
     // TODO: Rename and change types of parameters
     private Usuario mParam1;
     DAOEvento daoEvento = new DAOEvento();
+    DAOUsuario daoUsuario = new DAOUsuario();
+    ArrayList<Usuario> usuarios = new ArrayList<>();
+    int id;
 
     public Perfil(){
 
@@ -66,6 +70,8 @@ public class Perfil extends Fragment {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
             mParam1 = (Usuario) getArguments().getSerializable(ARG_PARAM1);
+            daoUsuario.addUsuario(mParam1);
+            usuarios.add(mParam1);
         }
     }
 
@@ -87,7 +93,6 @@ public class Perfil extends Fragment {
         textEmail.setText(mParam1.getEmail());
         textNome.setText(mParam1.getNome());
 
-
         mudarSenha();
 
         transfere();
@@ -103,12 +108,18 @@ public class Perfil extends Fragment {
         btnEditUser.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                for(int i = 0; i < usuarios.size();i++){
+                    if(usuarios.get(i).getNome().equals(mParam1.getNome())){
+                        id = i;
 
-                Intent intent = new Intent(getActivity(), EditProfile.class);
-                intent.putExtra("nome",mParam1.getNome());
-                intent.putExtra("email",mParam1.getEmail());
+                        Intent intent = new Intent(getActivity(), EditProfile.class);
+                        intent.putExtra("nome",mParam1.getNome());
+                        intent.putExtra("email",mParam1.getEmail());
 
-                startActivityForResult(intent,201);
+                        startActivityForResult(intent,201);
+                    }
+                }
+
             }
         });
     }
@@ -121,6 +132,11 @@ public class Perfil extends Fragment {
             if(resultCode == getActivity().RESULT_OK){
                 mParam1.setNome(data.getStringExtra("nomeModificado"));
                 mParam1.setEmail(data.getStringExtra("emailModificado"));
+
+                usuarios.set(id,mParam1);
+                daoUsuario.setUsuarios(usuarios);
+
+                System.out.println("amongus: "+usuarios.get(id).getNome());
 
                 textEmail.setText(mParam1.getEmail());
                 textNome.setText(mParam1.getNome());
