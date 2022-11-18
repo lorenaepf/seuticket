@@ -13,13 +13,12 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
-import android.widget.TextView;
-import android.widget.Toast;
 
 
 import java.util.ArrayList;
 
 import br.ufc.quixada.myapplicationnn.CrudEvento.EditEvento;
+import br.ufc.quixada.myapplicationnn.DAO.DAOEvento;
 import br.ufc.quixada.myapplicationnn.Entidades.Evento;
 import br.ufc.quixada.myapplicationnn.Entidades.Usuario;
 

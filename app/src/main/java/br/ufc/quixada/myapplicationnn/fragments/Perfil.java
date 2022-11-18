@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
@@ -17,8 +16,8 @@ import br.ufc.quixada.myapplicationnn.CrudEvento.CadEvento;
 import br.ufc.quixada.myapplicationnn.CrudUser.Cadastro;
 import br.ufc.quixada.myapplicationnn.CrudUser.EditProfile;
 import br.ufc.quixada.myapplicationnn.CrudUser.EditarSenha;
-import br.ufc.quixada.myapplicationnn.DAOEvento;
-import br.ufc.quixada.myapplicationnn.DAOUsuario;
+import br.ufc.quixada.myapplicationnn.DAO.DAOEvento;
+import br.ufc.quixada.myapplicationnn.DAO.DAOUsuario;
 import br.ufc.quixada.myapplicationnn.Entidades.Evento;
 import br.ufc.quixada.myapplicationnn.Entidades.Usuario;
 import br.ufc.quixada.myapplicationnn.R;
@@ -136,8 +135,6 @@ public class Perfil extends Fragment {
                 usuarios.set(id,mParam1);
                 daoUsuario.setUsuarios(usuarios);
 
-                System.out.println("amongus: "+usuarios.get(id).getNome());
-
                 textEmail.setText(mParam1.getEmail());
                 textNome.setText(mParam1.getNome());
 
@@ -147,6 +144,11 @@ public class Perfil extends Fragment {
         if(requestCode == 202){
             if(resultCode == getActivity().RESULT_OK){
                 mParam1.setSenha(data.getStringExtra("senhaModificada"));
+
+                usuarios.set(id,mParam1);
+                daoUsuario.setUsuarios(usuarios);
+
+                System.out.println("amongus: "+usuarios.get(id).getSenha());
             }
         }
         if(requestCode == 501){
@@ -164,10 +166,18 @@ public class Perfil extends Fragment {
         textSenha.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getActivity(), EditarSenha.class);
-                intent.putExtra("senha",mParam1.getSenha());
+                for(int i = 0; i < usuarios.size();i++){
+                    if(usuarios.get(i).getNome().equals(mParam1.getNome())){
+                        id = i;
 
-                startActivityForResult(intent,202);
+                        Intent intent = new Intent(getActivity(), EditarSenha.class);
+                        intent.putExtra("senha",mParam1.getSenha());
+
+                        startActivityForResult(intent,202);
+
+                    }
+                }
+
             }
         });
     }

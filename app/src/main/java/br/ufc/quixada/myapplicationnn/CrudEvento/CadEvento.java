@@ -12,7 +12,7 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
-import br.ufc.quixada.myapplicationnn.DAOEvento;
+import br.ufc.quixada.myapplicationnn.DAO.DAOEvento;
 import br.ufc.quixada.myapplicationnn.Entidades.Evento;
 import br.ufc.quixada.myapplicationnn.Entidades.Usuario;
 import br.ufc.quixada.myapplicationnn.R;

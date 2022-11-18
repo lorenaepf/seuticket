@@ -1,4 +1,4 @@
-package br.ufc.quixada.myapplicationnn;
+package br.ufc.quixada.myapplicationnn.DAO;
 
 
 import java.io.Serializable;

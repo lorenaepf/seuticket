@@ -9,6 +9,9 @@ import android.widget.Button;
 
 import androidx.fragment.app.Fragment;
 
+import java.util.ArrayList;
+
+import br.ufc.quixada.myapplicationnn.DAO.DAOFavoritos;
 import br.ufc.quixada.myapplicationnn.R;
 import br.ufc.quixada.myapplicationnn.TelaEventos;
 
@@ -23,6 +26,9 @@ public class Favoritos extends Fragment {
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
+
+    DAOFavoritos daoFavoritos = new DAOFavoritos();
+    ArrayList<Favoritos> favoritos = new ArrayList<>();
 
 
     // TODO: Rename and change types of parameters
