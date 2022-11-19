@@ -1,14 +1,24 @@
 package br.ufc.quixada.myapplicationnn.CrudUser;
 
+import static android.content.ContentValues.TAG;
+
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 import br.ufc.quixada.myapplicationnn.LoginST;
 import br.ufc.quixada.myapplicationnn.R;
@@ -17,6 +27,7 @@ public class Cadastro extends AppCompatActivity {
     EditText email, senha,nome;
     Button button;
     TextView Cad;
+    String nomeText,emailTxt,senhaTxt;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,6 +35,7 @@ public class Cadastro extends AppCompatActivity {
         setContentView(R.layout.activity_cadastro);
 
         iniciaComponente();
+
     }
 
     public void iniciaComponente(){
@@ -38,9 +50,12 @@ public class Cadastro extends AppCompatActivity {
             public void onClick(View view) {
 
 
-                String emailTxt = email.getText().toString();
-                String senhaTxt = senha.getText().toString();
-                String nomeText = nome.getText().toString();
+                emailTxt = email.getText().toString();
+                senhaTxt = senha.getText().toString();
+                nomeText = nome.getText().toString();
+
+                teste(emailTxt,senhaTxt);
+
 
                 if(emailTxt.isEmpty() || senhaTxt.isEmpty() || nomeText.isEmpty()){
                     Toast.makeText(Cadastro.this, "Preencha todos os campos!",Toast.LENGTH_SHORT).show();
@@ -54,6 +69,19 @@ public class Cadastro extends AppCompatActivity {
                     startActivity(intent);
                 }
 
+            }
+        });
+    }
+
+    public void teste(String email, String senha){
+        FirebaseAuth.getInstance().createUserWithEmailAndPassword(email,senha).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+            @Override
+            public void onComplete(@NonNull Task<AuthResult> task) {
+                if(task.isSuccessful()){
+                    Toast.makeText(Cadastro.this, "Deu bom",Toast.LENGTH_LONG).show();
+                }else{
+                    Toast.makeText(Cadastro.this, "Não deu "+emailTxt, Toast.LENGTH_LONG).show();
+                }
             }
         });
     }

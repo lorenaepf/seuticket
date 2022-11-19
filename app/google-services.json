@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "563161636638",
+    "project_id": "login-38cf5",
+    "storage_bucket": "login-38cf5.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:563161636638:android:7f7c192f916701318cb30f",
+        "android_client_info": {
+          "package_name": "br.ufc.quixada.myapplicationnn"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "563161636638-lpsvv3get5tgvq8g56jujepkq1v3k5jt.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA1XkrHChvE4kCtA5IxGaWS0Bc8GGX4A3A"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "563161636638-lpsvv3get5tgvq8g56jujepkq1v3k5jt.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
