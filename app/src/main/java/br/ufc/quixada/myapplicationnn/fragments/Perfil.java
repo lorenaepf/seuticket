@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -143,12 +144,12 @@ public class Perfil extends Fragment {
         }
         if(requestCode == 202){
             if(resultCode == getActivity().RESULT_OK){
-                mParam1.setSenha(data.getStringExtra("senhaModificada"));
+//                mParam1.setSenha(data.getStringExtra("senhaModificada"));
 
-                usuarios.set(id,mParam1);
-                daoUsuario.setUsuarios(usuarios);
+//                usuarios.set(id,mParam1);
+//                daoUsuario.setUsuarios(usuarios);
 
-                System.out.println("amongus: "+usuarios.get(id).getSenha());
+//                System.out.println("amongus: "+usuarios.get(id).getSenha());
             }
         }
         if(requestCode == 501){
@@ -171,7 +172,7 @@ public class Perfil extends Fragment {
                         id = i;
 
                         Intent intent = new Intent(getActivity(), EditarSenha.class);
-                        intent.putExtra("senha",mParam1.getSenha());
+//                        intent.putExtra("senha",mParam1.getSenha());
 
                         startActivityForResult(intent,202);
 
@@ -183,7 +184,7 @@ public class Perfil extends Fragment {
     }
 
     public void cadEvento() {
-        if(mParam1.getEmail().equals("adm")){
+        if(mParam1.getEmail().equals("anderson@gmail.com")){
             btnCadEvento.setVisibility(View.VISIBLE);
         }else{
             btnCadEvento.setVisibility(View.INVISIBLE);
@@ -202,9 +203,8 @@ public class Perfil extends Fragment {
 
 
     public void editEvento(){
-        if(mParam1.getEmail().equals("adm")){
+        if(mParam1.getEmail().equals("anderson@gmail.com")){
             btnEditEvento.setVisibility(View.VISIBLE);
-            System.out.println("adm3"+mParam1);
             btnEditEvento.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {

@@ -29,7 +29,6 @@ public class LoginST extends AppCompatActivity {
     String email,senha,nome;//cria user
     EditText edtEmail, edtSenha; //loga
     ImageView volta;
-    Button button;
     TextView login;
 
     @Override
@@ -38,16 +37,16 @@ public class LoginST extends AppCompatActivity {
         setContentView(R.layout.activity_login_st);
 
         //Recebe de cadastro
-        Bundle extras = getIntent().getExtras();
-        if(extras != null) {
-            email = extras.getString("email");
-            senha = extras.getString("senha");
-            nome = extras.getString("nome");
-
-            Usuario user = new Usuario(nome,email,senha);
-            listUsers.add(user);//add no array
-
-        }
+//        Bundle extras = getIntent().getExtras();
+//        if(extras != null) {
+//            email = extras.getString("email");
+//            senha = extras.getString("senha");
+//            nome = extras.getString("nome");
+//
+//            Usuario user = new Usuario(nome,email);
+//            listUsers.add(user);//add no array
+//
+//        }
         login = findViewById(R.id.textLogin);
         volta = findViewById(R.id.retorna);
 
@@ -72,16 +71,13 @@ public class LoginST extends AppCompatActivity {
                 String emailLog = edtEmail.getText().toString();
                 String senhaLog = edtSenha.getText().toString();
 
-                for(Usuario user : listUsers){
-                    if(emailLog.equals(user.getEmail()) && senhaLog.equals(user.getSenha())){
-
-                        FirebaseAuth.getInstance().signInWithEmailAndPassword(email,senha).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                            @Override
-                            public void onComplete(@NonNull Task<AuthResult> task) {
-                                if(task.isSuccessful()){
-                                    Intent intent = new Intent(LoginST.this, MainActivityHome.class);
-                                    intent.putExtra("user",user);
-                                    startActivity(intent);
+                FirebaseAuth.getInstance().signInWithEmailAndPassword(emailLog,senhaLog).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if(task.isSuccessful()){
+                            Intent intent = new Intent(LoginST.this, MainActivityHome.class);
+//                            intent.putExtra("user",user);
+                            startActivity(intent);
 
                                     Toast.makeText(LoginST.this,"Deu bom",Toast.LENGTH_SHORT).show();
                                 }else{
@@ -89,12 +85,6 @@ public class LoginST extends AppCompatActivity {
                                 }
                             }
                         });
-
-
-                    }else{
-                        Toast.makeText(LoginST.this,"Campo email e/ou senha incorretos",Toast.LENGTH_SHORT).show();
-                    }
-                }
             }
         });
 

@@ -76,9 +76,9 @@ public class Cadastro extends AppCompatActivity {
                                 SalvarDadosUsuario();
 
                                 Intent intent = new Intent(Cadastro.this, LoginST.class);
-                                intent.putExtra("email",emailTxt);
-                                intent.putExtra("senha", senhaTxt);
-                                intent.putExtra("nome",nomeText);
+//                                intent.putExtra("email",emailTxt);
+//                                intent.putExtra("senha", senhaTxt);
+//                                intent.putExtra("nome",nomeText);
                                 Toast.makeText(Cadastro.this, "Cadastrado com sucesso!", Toast.LENGTH_SHORT).show();
 
                                 startActivity(intent);
