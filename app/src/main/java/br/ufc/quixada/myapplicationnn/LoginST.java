@@ -20,30 +20,31 @@ import com.google.firebase.auth.FirebaseAuth;
 import java.util.ArrayList;
 
 import br.ufc.quixada.myapplicationnn.CrudUser.Cadastro;
+import br.ufc.quixada.myapplicationnn.CrudUser.EditarSenha;
 import br.ufc.quixada.myapplicationnn.Entidades.Usuario;
 
 public class LoginST extends AppCompatActivity {
 
-    ArrayList<Usuario> listUsers = new ArrayList<>();
-
-    String nome,id;//cria user
     EditText edtEmail, edtSenha; //loga
     ImageView volta;
-    TextView login;
+    TextView login,esqueceuSenha;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login_st);
 
-        //Recebe de cadastro
-        Bundle extras = getIntent().getExtras();
-        if(extras != null) {
-            nome = extras.getString("nome");
-            id = extras.getString("id");
-
-        }
         login = findViewById(R.id.textLogin);
+        esqueceuSenha = findViewById(R.id.escSenha);
+
+        esqueceuSenha.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(LoginST.this, EditarSenha.class);
+                startActivity(intent);
+            }
+        });
+
         volta = findViewById(R.id.retorna);
 
         volta.setOnClickListener(new View.OnClickListener() {
@@ -72,8 +73,6 @@ public class LoginST extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if(task.isSuccessful()){
                             Intent intent = new Intent(LoginST.this, MainActivityHome.class);
-                            intent.putExtra("nomeUser",nome);
-                            intent.putExtra("id",id);
                             startActivity(intent);
 
                                     Toast.makeText(LoginST.this,"Deu bom",Toast.LENGTH_SHORT).show();

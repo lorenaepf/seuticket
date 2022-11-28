@@ -8,13 +8,19 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -54,6 +60,7 @@ public class Perfil extends Fragment {
     int id;
 
     static FirebaseAuth mAuth;
+    static FirebaseFirestore db;
 
     public Perfil(){
 
@@ -66,10 +73,12 @@ public class Perfil extends Fragment {
      * @return A new instance of fragment Perfil.
      */
     // TODO: Rename and change types and number of parameters
-    public static Perfil newInstance(FirebaseAuth mAuth,Usuario usuario) {
+    public static Perfil newInstance(FirebaseFirestore db,FirebaseAuth mAuth,Usuario usuario) {
         Perfil fragment = new Perfil();
         Bundle args = new Bundle();
         Perfil.mAuth = mAuth;
+        Perfil.db = db;
+
         args.putSerializable(ARG_PARAM1, usuario);
         fragment.setArguments(args);
         return fragment;
@@ -144,12 +153,23 @@ public class Perfil extends Fragment {
         if(requestCode == 201){
             if(resultCode == getActivity().RESULT_OK){
                 mParam1.setNome(data.getStringExtra("nomeModificado"));
-                mParam1.setEmail(data.getStringExtra("emailModificado"));
 
                 usuarios.set(id,mParam1);
                 daoUsuario.setUsuarios(usuarios);
 
-                textEmail.setText(mParam1.getEmail());
+                db.collection("usuarios").document(mParam1.getuId()).update("nome",mParam1.getNome())
+                                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                    @Override
+                                    public void onComplete(@NonNull Task<Void> task) {
+                                        Toast.makeText(getActivity(), "Atualizado com sucesso",Toast.LENGTH_SHORT).show();
+                                    }
+                                }).addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception e) {
+                                Toast.makeText(getActivity(),"Falha ao atualizar",Toast.LENGTH_SHORT).show();
+                            }
+                        });
+
                 textNome.setText(mParam1.getNome());
 
             }

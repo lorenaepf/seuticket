@@ -46,8 +46,6 @@ public class MainActivityHome extends AppCompatActivity {
         Bundle extras = getIntent().getExtras();
         if(extras != null) {
             fav = (Evento) extras.getSerializable("fav");
-            usuarioID = extras.getString("id");
-
         }
         mAuth = FirebaseAuth.getInstance();
 
@@ -69,7 +67,7 @@ public class MainActivityHome extends AppCompatActivity {
                         fragment = Favoritos.newInstance(fav);
                         break;
                     case R.id.page_5:
-                        fragment = Perfil.newInstance(mAuth,usuario);
+                        fragment = Perfil.newInstance(db,mAuth,usuario);
                         break;
                     default: fragment = new Home();
                 }
@@ -94,6 +92,7 @@ public class MainActivityHome extends AppCompatActivity {
             public void onEvent(@Nullable DocumentSnapshot documentSnapshot, @Nullable FirebaseFirestoreException error) {
                 if(documentSnapshot != null){
                     usuario.setNome(documentSnapshot.getString("nome"));
+                    usuario.setuId(usuarioID);
                     usuario.setEmail(emailUser);
                 }
             }

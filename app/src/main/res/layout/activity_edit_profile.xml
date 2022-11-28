@@ -7,19 +7,6 @@
     tools:context=".CrudUser.EditProfile">
 
     <EditText
-        android:id="@+id/changeEmail"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="64dp"
-        android:ems="10"
-        android:hint="Email"
-        android:inputType="textPersonName"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.502"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/changeName" />
-
-    <EditText
         android:id="@+id/changeName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -36,10 +23,10 @@
         android:id="@+id/btnEdt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="52dp"
+        android:layout_marginTop="60dp"
         android:text="Salvar"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.532"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/changeEmail" />
+        app:layout_constraintTop_toBottomOf="@+id/changeName" />
 </androidx.constraintlayout.widget.ConstraintLayout>

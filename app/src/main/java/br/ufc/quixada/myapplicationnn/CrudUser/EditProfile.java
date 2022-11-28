@@ -22,23 +22,20 @@ public class EditProfile extends AppCompatActivity{
         setContentView(R.layout.activity_edit_profile);
 
         nomeText = findViewById(R.id.changeName);
-        emailText = findViewById(R.id.changeEmail);
         button = findViewById(R.id.btnEdt);
 
         Intent intent = getIntent();
         //Recebe da intent para preencher os campos
 
         nome = intent.getStringExtra("nome");
-        email = intent.getStringExtra("email");
 
         onDataReceived();
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 String nomeModificado = nomeText.getText().toString();
-                String emailModificado = emailText.getText().toString();
 
-                openFragment(nomeModificado, emailModificado);
+                openFragment(nomeModificado);
 
             }
         });
@@ -47,13 +44,11 @@ public class EditProfile extends AppCompatActivity{
     public void onDataReceived() {
 
         nomeText.setText(nome);
-        emailText.setText(email);
 
     }
-    public void openFragment(String nomeM, String emailM){
+    public void openFragment(String nomeM){
         Intent intent = new Intent();
         intent.putExtra("nomeModificado",nomeM);
-        intent.putExtra("emailModificado",emailM);
 
         setResult(RESULT_OK,intent);
         finish();

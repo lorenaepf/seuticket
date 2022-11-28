@@ -44,9 +44,6 @@ public class Cadastro extends AppCompatActivity implements UsuarioDB {
     String nomeText,emailTxt,senhaTxt;
     String usuarioID;
 
-    FirebaseDatabase firebaseDatabase;
-    DatabaseReference databaseReference;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
