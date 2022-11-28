@@ -21,6 +21,7 @@ import br.ufc.quixada.myapplicationnn.CrudEvento.EditEvento;
 import br.ufc.quixada.myapplicationnn.DAO.DAOEvento;
 import br.ufc.quixada.myapplicationnn.Entidades.Evento;
 import br.ufc.quixada.myapplicationnn.Entidades.Usuario;
+import br.ufc.quixada.myapplicationnn.fragments.Favoritos;
 
 public class TelaEventos extends AppCompatActivity {
 
@@ -170,6 +171,17 @@ public class TelaEventos extends AppCompatActivity {
                     intent.putExtra("eventoCompra",eventos.get(i));
                     startActivity(intent);
 
+                }
+            });
+
+            listEventos.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+                @Override
+                public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
+                    Intent intent = new Intent(TelaEventos.this, MainActivityHome.class);
+                    intent.putExtra("fav",eventos.get(i));
+                    startActivity(intent);
+
+                    return false;
                 }
             });
         }

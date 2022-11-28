@@ -26,7 +26,7 @@ public class LoginST extends AppCompatActivity {
 
     ArrayList<Usuario> listUsers = new ArrayList<>();
 
-    String email,senha,nome;//cria user
+    String nome,id;//cria user
     EditText edtEmail, edtSenha; //loga
     ImageView volta;
     TextView login;
@@ -37,16 +37,12 @@ public class LoginST extends AppCompatActivity {
         setContentView(R.layout.activity_login_st);
 
         //Recebe de cadastro
-//        Bundle extras = getIntent().getExtras();
-//        if(extras != null) {
-//            email = extras.getString("email");
-//            senha = extras.getString("senha");
-//            nome = extras.getString("nome");
-//
-//            Usuario user = new Usuario(nome,email);
-//            listUsers.add(user);//add no array
-//
-//        }
+        Bundle extras = getIntent().getExtras();
+        if(extras != null) {
+            nome = extras.getString("nome");
+            id = extras.getString("id");
+
+        }
         login = findViewById(R.id.textLogin);
         volta = findViewById(R.id.retorna);
 
@@ -76,7 +72,8 @@ public class LoginST extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if(task.isSuccessful()){
                             Intent intent = new Intent(LoginST.this, MainActivityHome.class);
-//                            intent.putExtra("user",user);
+                            intent.putExtra("nomeUser",nome);
+                            intent.putExtra("id",id);
                             startActivity(intent);
 
                                     Toast.makeText(LoginST.this,"Deu bom",Toast.LENGTH_SHORT).show();

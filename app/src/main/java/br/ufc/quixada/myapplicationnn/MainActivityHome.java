@@ -11,12 +11,17 @@ import androidx.fragment.app.Fragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 
+import java.util.UUID;
+
+import br.ufc.quixada.myapplicationnn.Entidades.Evento;
 import br.ufc.quixada.myapplicationnn.Entidades.Usuario;
 import br.ufc.quixada.myapplicationnn.fragments.Carteira;
 import br.ufc.quixada.myapplicationnn.fragments.Favoritos;
@@ -27,19 +32,24 @@ public class MainActivityHome extends AppCompatActivity {
     BottomNavigationView bottomNavigationView;
     String email,senha,nome;
     Usuario usuario = new Usuario();
+    Evento fav = new Evento();
+
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     String usuarioID;
+    private FirebaseAuth mAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_home);
 
-//        Bundle extras = getIntent().getExtras();
-//        if(extras != null) {
-//            usuario = (Usuario) extras.getSerializable("user");
-//        }
+        Bundle extras = getIntent().getExtras();
+        if(extras != null) {
+            fav = (Evento) extras.getSerializable("fav");
+            usuarioID = extras.getString("id");
 
+        }
+        mAuth = FirebaseAuth.getInstance();
 
         bottomNavigationView = findViewById(R.id.bottom_navigation);
         getSupportFragmentManager().beginTransaction().replace(R.id.maincontainer, Home.newInstance(email,senha,nome)).commit();
@@ -56,10 +66,10 @@ public class MainActivityHome extends AppCompatActivity {
                         fragment = new Carteira();
                         break;
                     case R.id.page_4:
-                        fragment = new Favoritos();
+                        fragment = Favoritos.newInstance(fav);
                         break;
                     case R.id.page_5:
-                        fragment = Perfil.newInstance(usuario);
+                        fragment = Perfil.newInstance(mAuth,usuario);
                         break;
                     default: fragment = new Home();
                 }
@@ -88,5 +98,6 @@ public class MainActivityHome extends AppCompatActivity {
                 }
             }
         });
+
     }
 }

@@ -11,6 +11,12 @@ import android.widget.Toast;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
+import java.io.Serializable;
 import java.util.ArrayList;
 
 import br.ufc.quixada.myapplicationnn.CrudEvento.CadEvento;
@@ -21,6 +27,7 @@ import br.ufc.quixada.myapplicationnn.DAO.DAOEvento;
 import br.ufc.quixada.myapplicationnn.DAO.DAOUsuario;
 import br.ufc.quixada.myapplicationnn.Entidades.Evento;
 import br.ufc.quixada.myapplicationnn.Entidades.Usuario;
+import br.ufc.quixada.myapplicationnn.MainActivity;
 import br.ufc.quixada.myapplicationnn.R;
 import br.ufc.quixada.myapplicationnn.TelaEventos;
 
@@ -32,7 +39,7 @@ import br.ufc.quixada.myapplicationnn.TelaEventos;
 public class Perfil extends Fragment {
 
     TextView textEmail,textNome,textSenha;
-    TextView btnEditUser,btnCadEvento,btnEditEvento,btnDeleteUser;
+    TextView btnEditUser,btnCadEvento,btnEditEvento,btnDeleteUser,sair;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -46,6 +53,8 @@ public class Perfil extends Fragment {
     ArrayList<Usuario> usuarios = new ArrayList<>();
     int id;
 
+    static FirebaseAuth mAuth;
+
     public Perfil(){
 
     }
@@ -57,9 +66,10 @@ public class Perfil extends Fragment {
      * @return A new instance of fragment Perfil.
      */
     // TODO: Rename and change types and number of parameters
-    public static Perfil newInstance(Usuario usuario) {
+    public static Perfil newInstance(FirebaseAuth mAuth,Usuario usuario) {
         Perfil fragment = new Perfil();
         Bundle args = new Bundle();
+        Perfil.mAuth = mAuth;
         args.putSerializable(ARG_PARAM1, usuario);
         fragment.setArguments(args);
         return fragment;
@@ -70,6 +80,7 @@ public class Perfil extends Fragment {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
             mParam1 = (Usuario) getArguments().getSerializable(ARG_PARAM1);
+            System.out.println("lau "+mParam1);
             daoUsuario.addUsuario(mParam1);
             usuarios.add(mParam1);
         }
@@ -88,6 +99,7 @@ public class Perfil extends Fragment {
         textEmail = v.findViewById(R.id.emailPerfil);
         textNome = v.findViewById(R.id.nomePerfil);
         textSenha = v.findViewById(R.id.texTelaSenha);
+        sair = v.findViewById(R.id.logout);
 
 
         textEmail.setText(mParam1.getEmail());
@@ -95,16 +107,17 @@ public class Perfil extends Fragment {
 
         mudarSenha();
 
-        transfere();
+        editUser();
         cadEvento();
         editEvento();
+        logOut();
        // deleteUser();
 
         return v;
     }
 
 
-    public void transfere(){//editar user
+    public void editUser(){//editar user
         btnEditUser.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -144,12 +157,7 @@ public class Perfil extends Fragment {
         }
         if(requestCode == 202){
             if(resultCode == getActivity().RESULT_OK){
-//                mParam1.setSenha(data.getStringExtra("senhaModificada"));
 
-//                usuarios.set(id,mParam1);
-//                daoUsuario.setUsuarios(usuarios);
-
-//                System.out.println("amongus: "+usuarios.get(id).getSenha());
             }
         }
         if(requestCode == 501){
@@ -221,19 +229,22 @@ public class Perfil extends Fragment {
 
 
     }
-    public void deleteUser(){
-        btnDeleteUser.setOnClickListener(new View.OnClickListener() {
+    public void logOut(){
+        sair.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                mParam1 = null;
-                textEmail.setText("null");
-                textNome.setText("null");
-
-                Intent intent = new Intent(getActivity(), Cadastro.class);
-                startActivity(intent);
+                FirebaseUser firebaseUser = mAuth.getCurrentUser();
+                if(firebaseUser != null){
+                    mAuth.signOut();
+                    Toast.makeText(getActivity(),"Deslogado com sucesso",Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(getActivity(), MainActivity.class);
+                    startActivity(intent);
+                }else{
+                    Toast.makeText(getActivity(),"Ninguém logado",Toast.LENGTH_SHORT).show();
+                }
 
             }
         });
-        //mandar para um outro fragment ou pedindo para criar
     }
+
 }
