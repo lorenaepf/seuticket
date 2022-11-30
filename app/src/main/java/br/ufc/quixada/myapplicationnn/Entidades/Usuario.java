@@ -2,9 +2,13 @@ package br.ufc.quixada.myapplicationnn.Entidades;
 
 import java.io.Serializable;
 
-public class Usuario implements Serializable {
+import br.ufc.quixada.myapplicationnn.Interfaces.TransfereSaldo;
+
+public class Usuario implements Serializable, TransfereSaldo {
 
     String nome, email,uId;
+    Conta conta = new Conta();
+
     public Usuario(){
 
     }
@@ -37,5 +41,13 @@ public class Usuario implements Serializable {
 
     public void setuId(String uId) {
         this.uId = uId;
+    }
+
+    @Override
+    public void addSaldo(float saldo) {
+        this.conta.setSaldo(saldo);
+    }
+    public Conta getConta(){
+        return conta;
     }
 }

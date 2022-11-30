@@ -61,7 +61,7 @@ public class MainActivityHome extends AppCompatActivity {
                         fragment = new Home();
                         break;
                     case R.id.page_2:
-                        fragment = new Carteira();
+                        fragment =  Carteira.newInstance(db,usuario);
                         break;
                     case R.id.page_4:
                         fragment = Favoritos.newInstance(fav);
@@ -92,8 +92,10 @@ public class MainActivityHome extends AppCompatActivity {
             public void onEvent(@Nullable DocumentSnapshot documentSnapshot, @Nullable FirebaseFirestoreException error) {
                 if(documentSnapshot != null){
                     usuario.setNome(documentSnapshot.getString("nome"));
+                    Float saldo = Float.parseFloat(documentSnapshot.getString("saldo"));
+                    usuario.addSaldo(saldo);
                     usuario.setuId(usuarioID);
-                    usuario.setEmail(emailUser);
+                    usuario.setEmail(documentSnapshot.getString("email"));
                 }
             }
         });

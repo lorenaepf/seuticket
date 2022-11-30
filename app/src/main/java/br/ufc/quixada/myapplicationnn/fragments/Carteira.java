@@ -4,9 +4,16 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+
+import br.ufc.quixada.myapplicationnn.Entidades.Usuario;
 import br.ufc.quixada.myapplicationnn.R;
 
 /**
@@ -19,30 +26,24 @@ public class Carteira extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
 
     // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+    private Usuario mParam1;
+    TextView addValor, valor;
+    ImageView credit;
+    float saldoAtual = 0;
+    static FirebaseFirestore db;
 
     public Carteira() {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment Carteira.
-     */
     // TODO: Rename and change types and number of parameters
-    public static Carteira newInstance(String param1, String param2) {
+    public static Carteira newInstance(FirebaseFirestore db,Usuario usuario) {
         Carteira fragment = new Carteira();
         Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
+        args.putSerializable(ARG_PARAM1, usuario);
+        Carteira.db = db;
         fragment.setArguments(args);
         return fragment;
     }
@@ -51,8 +52,7 @@ public class Carteira extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
+            mParam1 = (Usuario) getArguments().getSerializable(ARG_PARAM1);
         }
     }
 
@@ -60,6 +60,40 @@ public class Carteira extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_carteira, container, false);
+
+         View v = inflater.inflate(R.layout.fragment_carteira, container, false);
+
+         addValor = v.findViewById(R.id.addSaldo);
+         credit = v.findViewById(R.id.credito);
+         valor = v.findViewById(R.id.value);
+         String saldo = String.valueOf(mParam1.getConta().getSaldo());
+         valor.setText(saldo);
+
+         adicionaSaldo();
+
+        return v;
+    }
+    public void adicionaSaldo(){
+            credit.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if(mParam1.getConta().getSaldo() != 0.0){//se houver saldo na conta
+                        saldoAtual = mParam1.getConta().getSaldo();
+                        saldoAtual += Integer.parseInt(addValor.getText().toString());
+
+                        String saldo = String.valueOf(saldoAtual);
+
+                        valor.setText(saldo);
+                        db.collection("usuarios").document(mParam1.getuId()).update("saldo",valor.getText().toString());
+
+                    }else if(mParam1.getConta().getSaldo() == 0){//se não houver nada na conta
+                            valor.setText(addValor.getText());
+                            db.collection("usuarios").document(mParam1.getuId()).update("saldo",valor.getText().toString());
+
+                    }
+
+                }
+            });
+
     }
 }

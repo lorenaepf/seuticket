@@ -117,6 +117,7 @@ public class Cadastro extends AppCompatActivity implements UsuarioDB {
         Map<String, Object> usuarios = new HashMap<>();
         usuarios.put("nome",nomeText);
         usuarios.put("email",emailTxt);
+        usuarios.put("saldo","0");
 
         usuarioID = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
