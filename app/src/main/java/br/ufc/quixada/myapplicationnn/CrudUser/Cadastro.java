@@ -11,6 +11,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -36,11 +37,13 @@ import java.util.UUID;
 import br.ufc.quixada.myapplicationnn.Entidades.Usuario;
 import br.ufc.quixada.myapplicationnn.Interfaces.UsuarioDB;
 import br.ufc.quixada.myapplicationnn.LoginST;
+import br.ufc.quixada.myapplicationnn.MainActivity;
 import br.ufc.quixada.myapplicationnn.R;
 
 public class Cadastro extends AppCompatActivity implements UsuarioDB {
     EditText email, senha,nome;
     TextView Cad;
+    ImageView telaInicio;
     String nomeText,emailTxt,senhaTxt;
     String usuarioID;
 
@@ -58,6 +61,15 @@ public class Cadastro extends AppCompatActivity implements UsuarioDB {
         senha = findViewById(R.id.logSenha);
         nome = findViewById(R.id.edtCadNome);
         Cad = findViewById(R.id.textCad);
+        telaInicio = findViewById(R.id.retorna);
+
+        telaInicio.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(Cadastro.this, MainActivity.class);
+                startActivity(intent);
+            }
+        });
 
         Cad.setOnClickListener(new View.OnClickListener() {
             @Override
