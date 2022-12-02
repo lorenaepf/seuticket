@@ -42,7 +42,7 @@ import br.ufc.quixada.myapplicationnn.TelaEventos;
  * Use the {@link Perfil#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class Perfil extends Fragment {
+public class Perfil extends Fragment implements Serializable{
 
     TextView textEmail,textNome,textSenha;
     TextView btnEditUser,btnCadEvento,btnEditEvento,btnDeleteUser,sair;
@@ -54,7 +54,6 @@ public class Perfil extends Fragment {
 
     // TODO: Rename and change types of parameters
     private Usuario mParam1;
-    DAOEvento daoEvento = new DAOEvento();
     DAOUsuario daoUsuario = new DAOUsuario();
     ArrayList<Usuario> usuarios = new ArrayList<>();
     int id;
@@ -89,7 +88,6 @@ public class Perfil extends Fragment {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
             mParam1 = (Usuario) getArguments().getSerializable(ARG_PARAM1);
-            System.out.println("lau "+mParam1);
             daoUsuario.addUsuario(mParam1);
             usuarios.add(mParam1);
         }
@@ -182,12 +180,11 @@ public class Perfil extends Fragment {
         }
         if(requestCode == 501){
             if(resultCode == getActivity().RESULT_OK){
-                daoEvento.setEventos((ArrayList<Evento>) data.getSerializableExtra("DAO"));
             }
         }
         if(requestCode == 601){
             if(resultCode == getActivity().RESULT_OK){
-                daoEvento.setEventos((ArrayList<Evento>) data.getSerializableExtra("DAO"));
+
             }
         }
     }
@@ -222,8 +219,7 @@ public class Perfil extends Fragment {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getActivity(), CadEvento.class);
-                intent.putExtra("original",daoEvento);
-                intent.putExtra("adm",mParam1);
+//                intent.putExtra("adm",mParam1);
                 startActivityForResult(intent,501);
             }
         });
@@ -237,8 +233,6 @@ public class Perfil extends Fragment {
                 @Override
                 public void onClick(View view) {
                     Intent intent = new Intent(getActivity(), TelaEventos.class);
-                    intent.putExtra("adm",mParam1);
-                    intent.putExtra("DAOEvento",daoEvento);
                     startActivityForResult(intent,601);
                 }
             });

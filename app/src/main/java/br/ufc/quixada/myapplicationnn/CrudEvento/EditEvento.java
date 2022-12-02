@@ -9,6 +9,8 @@ import android.widget.Button;
 import android.widget.EditText;
 
 
+import com.google.firebase.firestore.FirebaseFirestore;
+
 import br.ufc.quixada.myapplicationnn.Entidades.Evento;
 import br.ufc.quixada.myapplicationnn.R;
 
@@ -16,6 +18,7 @@ public class EditEvento extends AppCompatActivity {
     Evento evento = new Evento();
     EditText nomeText,dataText,horaText,cidadeText,estadoText,valorText,tipoText;
     Button button;
+    FirebaseFirestore db = FirebaseFirestore.getInstance();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,7 +36,7 @@ public class EditEvento extends AppCompatActivity {
         estadoText = findViewById(R.id.Edtestado);
         valorText = findViewById(R.id.EdtvalorTicket);
         tipoText = findViewById(R.id.Edttipo);
-        button = findViewById(R.id.btnEdtEvento);
+        button = findViewById(R.id.btnEdtEvent);
 
         preencheCampos();
 
@@ -68,6 +71,10 @@ public class EditEvento extends AppCompatActivity {
         Intent intent = new Intent();
         Evento eventoMod = new Evento(nome,data,hora,cidade,estado,valor,tipo);
         intent.putExtra("eventoMod",eventoMod);
+
+        db.collection("eventos").document(evento.getId()).update("nome",eventoMod.getNomeEvento(),
+                "data",eventoMod.getData(),"hora",eventoMod.getHora(),"cidade",eventoMod.getCidade()
+        ,"estado",eventoMod.getEstado(),"valor",eventoMod.getValor(),"tipo",eventoMod.getTipo());
 
         setResult(RESULT_OK,intent);
         finish();

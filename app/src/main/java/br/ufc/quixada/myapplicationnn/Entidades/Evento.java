@@ -3,7 +3,7 @@ package br.ufc.quixada.myapplicationnn.Entidades;
 import java.io.Serializable;
 
 public class Evento implements Serializable {
-    String nomeEvento,data,hora,cidade,estado,valor,tipo;
+    String nomeEvento,data,hora,cidade,estado,valor,tipo,id;
 
 
     public Evento(){
@@ -74,6 +74,14 @@ public class Evento implements Serializable {
 
     public void setHora(String hora) {
         this.hora = hora;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String toString(){

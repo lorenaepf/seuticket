@@ -1,6 +1,8 @@
 package br.ufc.quixada.myapplicationnn.Interfaces;
 
-public interface UsuarioDB {
+import java.io.Serializable;
+
+public interface UsuarioDB extends Serializable {
 
     public void criaUsuarioFB();
     public void salvaDadosUsuario();

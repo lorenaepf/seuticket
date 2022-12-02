@@ -1,6 +1,8 @@
 package br.ufc.quixada.myapplicationnn.Entidades;
 
-public class Conta {
+import java.io.Serializable;
+
+public class Conta implements Serializable {
 
     float saldo;
 

@@ -1,5 +1,6 @@
 package br.ufc.quixada.myapplicationnn.CrudEvento;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -10,7 +11,17 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.UUID;
 
 import br.ufc.quixada.myapplicationnn.DAO.DAOEvento;
 import br.ufc.quixada.myapplicationnn.Entidades.Evento;
@@ -18,15 +29,15 @@ import br.ufc.quixada.myapplicationnn.Entidades.Usuario;
 import br.ufc.quixada.myapplicationnn.R;
 import br.ufc.quixada.myapplicationnn.TelaEventos;
 
-public class CadEvento extends AppCompatActivity {
+public class CadEvento extends AppCompatActivity implements Serializable {
 
     EditText nomeText,dataText,horaText,cidadeText,estadoText,valorText,tipoText;
     Button button;
-    DAOEvento daoEvento = new DAOEvento();
     ArrayList<Evento> lau = new ArrayList<>();
     TextView volta;
-    Usuario adm = new Usuario();
+    String id;
 
+    FirebaseFirestore db = FirebaseFirestore.getInstance();
 
     public CadEvento(){
 
@@ -44,18 +55,11 @@ public class CadEvento extends AppCompatActivity {
         estadoText = findViewById(R.id.Edtestado);
         valorText = findViewById(R.id.EdtvalorTicket);
         tipoText = findViewById(R.id.Edttipo);
-        button = findViewById(R.id.btnEdtEvento);
+        button = findViewById(R.id.btnCadEvento);
         volta = findViewById(R.id.voltaCad);
 
         Intent intent = getIntent();
-        if(intent != null){
-            adm = (Usuario) intent.getSerializableExtra("adm");
 
-            if(daoEvento != null){
-                daoEvento = (DAOEvento) intent.getSerializableExtra("original");
-            }
-
-        }
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -67,7 +71,6 @@ public class CadEvento extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent();
-                intent.putExtra("DAO",daoEvento.getEventos());
                 setResult(RESULT_OK,intent);
                 finish();
             }
@@ -82,6 +85,7 @@ public class CadEvento extends AppCompatActivity {
         String estado = estadoText.getText().toString();
         String valor = valorText.getText().toString();
         String tipo = tipoText.getText().toString();
+        id = UUID.randomUUID().toString();
 
         nomeText.setText("");
         dataText.setText("");
@@ -92,19 +96,13 @@ public class CadEvento extends AppCompatActivity {
         tipoText.setText("");
 
         Evento evento = new Evento(nomeOrg,data,hora,cidade,estado,valor,tipo);
-        daoEvento.addEvento(evento);
+        criaEvento(evento);
 
         Intent intent = new Intent(CadEvento.this, TelaEventos.class);
-        intent.putExtra("DAOEvento",daoEvento);
-        intent.putExtra("adm",adm);
 
         startActivityForResult(intent,401);
     }
-    public void mudaDAO(DAOEvento daoNovo){
-        System.out.println("daoNovo"+daoNovo);
-        daoEvento.setEventos(daoNovo.getEventos());
 
-   }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
@@ -113,9 +111,31 @@ public class CadEvento extends AppCompatActivity {
         if(requestCode == 401){
             if(resultCode == CadEvento.RESULT_OK){
                 lau = (ArrayList<Evento>) data.getSerializableExtra("DAO");
-                daoEvento.setEventos(lau);
 
             }
         }
+    }
+    public void criaEvento(Evento ev) {
+        Map<String, Object> eventosDb = new HashMap<>();
+
+        eventosDb.put("nome",ev.getNomeEvento());
+        eventosDb.put("data",ev.getData());
+        eventosDb.put("hora",ev.getHora());
+        eventosDb.put("cidade",ev.getCidade());
+        eventosDb.put("estado",ev.getEstado());
+        eventosDb.put("tipo",ev.getTipo());
+        eventosDb.put("valor",ev.getValor());
+
+        db.collection("eventos").document(id).set(eventosDb).addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                System.out.println("Amongus cadastrado com sucesso");
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                System.out.println("Cadastro com falha");
+            }
+        });
     }
 }

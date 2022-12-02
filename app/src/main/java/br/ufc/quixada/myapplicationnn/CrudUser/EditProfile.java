@@ -42,7 +42,6 @@ public class EditProfile extends AppCompatActivity{
     }
 
     public void onDataReceived() {
-
         nomeText.setText(nome);
 
     }
