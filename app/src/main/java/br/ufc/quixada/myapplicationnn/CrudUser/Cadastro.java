@@ -30,10 +30,12 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 
+import br.ufc.quixada.myapplicationnn.Entidades.Evento;
 import br.ufc.quixada.myapplicationnn.Entidades.Usuario;
 import br.ufc.quixada.myapplicationnn.Interfaces.UsuarioDB;
 import br.ufc.quixada.myapplicationnn.LoginST;
@@ -46,6 +48,9 @@ public class Cadastro extends AppCompatActivity implements UsuarioDB {
     ImageView telaInicio;
     String nomeText,emailTxt,senhaTxt;
     String usuarioID;
+
+    ArrayList<Evento> fav = new ArrayList<>();
+    ArrayList<Evento> comprados = new ArrayList<Evento>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -130,6 +135,8 @@ public class Cadastro extends AppCompatActivity implements UsuarioDB {
         usuarios.put("nome",nomeText);
         usuarios.put("email",emailTxt);
         usuarios.put("saldo","0");
+        usuarios.put("favoritos",fav);
+        usuarios.put("comprados",comprados);
 
         usuarioID = FirebaseAuth.getInstance().getCurrentUser().getUid();
 

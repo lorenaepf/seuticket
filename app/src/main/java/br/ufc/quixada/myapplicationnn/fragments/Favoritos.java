@@ -1,22 +1,26 @@
 package br.ufc.quixada.myapplicationnn.fragments;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.ListView;
 
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.EventListener;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
 
 import java.util.ArrayList;
 
 import br.ufc.quixada.myapplicationnn.DAO.DAOFavoritos;
 import br.ufc.quixada.myapplicationnn.Entidades.Evento;
 import br.ufc.quixada.myapplicationnn.R;
-import br.ufc.quixada.myapplicationnn.TelaEventos;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -32,6 +36,11 @@ public class Favoritos extends Fragment {
 
     DAOFavoritos daoFavoritos = new DAOFavoritos();
     ArrayList<Evento> favoritos = new ArrayList<>();
+    ArrayList<String> lau = new ArrayList<>();
+
+    FirebaseFirestore db = FirebaseFirestore.getInstance();
+    String idUser = FirebaseAuth.getInstance().getCurrentUser().getUid();
+
     ListView listFavoritos;
     ArrayAdapter adapter;
 
@@ -73,10 +82,37 @@ public class Favoritos extends Fragment {
 
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_favoritos, container, false);
-        adapter = new ArrayAdapter(getActivity(), android.R.layout.simple_list_item_1,favoritos);
         listFavoritos = v.findViewById(R.id.listFav);
-        listFavoritos.setAdapter(adapter);
+
+        recuperaDados();
 
         return v;
+    }
+
+    private void recuperaDados() {
+        Evento scrr = new Evento();
+
+        db.collection("usuarios").document(idUser).addSnapshotListener(new EventListener<DocumentSnapshot>() {
+            @Override
+            public void onEvent(@Nullable DocumentSnapshot value, @Nullable FirebaseFirestoreException error) {
+                if(value != null){
+                    String teste[] = value.get("favoritos").toString().split(",");
+                    for(String p : teste){
+                        if(p.contains("nomeEvento")){
+                            scrr.setNomeEvento(p.replaceAll("nomeEvento=",""));
+                            favoritos.add(scrr);
+                        }
+                    }
+                    atualizaAdapter();
+                }
+            }
+//a@gmail.com
+        });
+
+    }
+    public void atualizaAdapter(){
+        adapter = new ArrayAdapter(getActivity(), android.R.layout.simple_list_item_1,favoritos);
+        listFavoritos.setAdapter(adapter);
+
     }
 }

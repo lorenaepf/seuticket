@@ -130,7 +130,7 @@
 
                     <ImageView
                         android:layout_gravity="center"
-                        android:id="@+id/imageView3"
+                        android:id="@+id/debito"
                         android:layout_width="50dp"
                         android:layout_height="50dp"
                         android:background="@drawable/minhacarteirabg"

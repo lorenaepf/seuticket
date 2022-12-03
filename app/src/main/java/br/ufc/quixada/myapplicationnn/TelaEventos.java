@@ -43,7 +43,10 @@ public class TelaEventos extends AppCompatActivity {
     EditText procurar;
 
     ArrayList<Evento> eventos = new ArrayList<>();
+    ArrayList<Evento> favoritos = new ArrayList<>();
+
     FirebaseFirestore db = FirebaseFirestore.getInstance();
+    String idUser = FirebaseAuth.getInstance().getCurrentUser().getUid();
     String adm = FirebaseAuth.getInstance().getCurrentUser().getEmail();
 
     Button btnVolta;
@@ -87,8 +90,26 @@ public class TelaEventos extends AppCompatActivity {
             deleteEvento();
         }else{
             compra();
+            favoritar();
             btnVolta.setVisibility(View.INVISIBLE);
         }
+    }
+
+    private void favoritar() {
+        listEventos.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
+                favoritos.add(eventos.get(i));
+                db.collection("usuarios").document(idUser).update("favoritos",favoritos).addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        Toast.makeText(TelaEventos.this,"Favoritado!",Toast.LENGTH_SHORT).show();
+                    }
+                });
+
+                return false;
+            }
+        });
     }
 
     private void recuperaDados() {
@@ -175,7 +196,7 @@ public class TelaEventos extends AppCompatActivity {
         });
     }
     public void compra(){
-        if(adm == null){
+
             listEventos.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
@@ -185,18 +206,6 @@ public class TelaEventos extends AppCompatActivity {
 
                 }
             });
-
-            listEventos.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
-                @Override
-                public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
-                    Intent intent = new Intent(TelaEventos.this, MainActivityHome.class);
-                    intent.putExtra("fav",eventos.get(i));
-                    startActivity(intent);
-
-                    return false;
-                }
-            });
-        }
 
     }
     public void atualizaAdapter(){

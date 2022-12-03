@@ -30,7 +30,7 @@ public class Carteira extends Fragment {
     // TODO: Rename and change types of parameters
     private Usuario mParam1;
     TextView addValor, valor;
-    ImageView credit;
+    ImageView credit,debit;
     float saldoAtual = 0;
     static FirebaseFirestore db;
 
@@ -65,6 +65,7 @@ public class Carteira extends Fragment {
 
          addValor = v.findViewById(R.id.addSaldo);
          credit = v.findViewById(R.id.credito);
+         debit = v.findViewById(R.id.debito);
          valor = v.findViewById(R.id.value);
          String saldo = String.valueOf(mParam1.getConta().getSaldo());
          valor.setText(saldo);
@@ -77,7 +78,7 @@ public class Carteira extends Fragment {
             credit.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    if(mParam1.getConta().getSaldo() != 0.0){//se houver saldo na conta
+                    if(mParam1.getConta().getSaldo() > 0.0){//se houver saldo na conta
                         saldoAtual = mParam1.getConta().getSaldo();
                         saldoAtual += Integer.parseInt(addValor.getText().toString());
 
@@ -85,11 +86,31 @@ public class Carteira extends Fragment {
 
                         valor.setText(saldo);
                         db.collection("usuarios").document(mParam1.getuId()).update("saldo",valor.getText().toString());
-
+                        addValor.setText("");
                     }else if(mParam1.getConta().getSaldo() == 0){//se não houver nada na conta
                             valor.setText(addValor.getText());
                             db.collection("usuarios").document(mParam1.getuId()).update("saldo",valor.getText().toString());
+                            addValor.setText("");
+                    }
 
+                }
+            });
+            debit.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if(mParam1.getConta().getSaldo() > 0.0){//se houver saldo na conta
+                        saldoAtual = mParam1.getConta().getSaldo();
+                        saldoAtual += Integer.parseInt(addValor.getText().toString());
+
+                        String saldo = String.valueOf(saldoAtual);
+
+                        valor.setText(saldo);
+                        db.collection("usuarios").document(mParam1.getuId()).update("saldo",valor.getText().toString());
+                        addValor.setText("");
+                    }else if(mParam1.getConta().getSaldo() == 0){//se não houver nada na conta
+                        valor.setText(addValor.getText());
+                        db.collection("usuarios").document(mParam1.getuId()).update("saldo",valor.getText().toString());
+                        addValor.setText("");
                     }
 
                 }
