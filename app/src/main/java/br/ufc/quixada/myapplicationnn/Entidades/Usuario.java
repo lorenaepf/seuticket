@@ -4,6 +4,7 @@ import java.io.Serializable;
 public class Usuario implements Serializable{
 
     String nome, email,uId;
+    String latitude, longitude;
     Conta conta = new Conta();
 
     public Usuario(){
@@ -45,5 +46,21 @@ public class Usuario implements Serializable{
     }
     public Conta getConta(){
         return conta;
+    }
+
+    public String getLatitude() {
+        return latitude;
+    }
+
+    public void setLatitude(String latitude) {
+        this.latitude = latitude;
+    }
+
+    public String getLongitude() {
+        return longitude;
+    }
+
+    public void setLongitude(String longitude) {
+        this.longitude = longitude;
     }
 }

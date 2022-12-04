@@ -1,11 +1,14 @@
 package br.ufc.quixada.myapplicationnn;
 
+import android.Manifest;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.view.MenuItem;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -48,6 +51,7 @@ public class MainActivityHome extends AppCompatActivity {
             fav = (Evento) extras.getSerializable("fav");
         }
         mAuth = FirebaseAuth.getInstance();
+        buscarInformacoesGPS();
 
         bottomNavigationView = findViewById(R.id.bottom_navigation);
         getSupportFragmentManager().beginTransaction().replace(R.id.maincontainer, Home.newInstance(email,senha,nome)).commit();
@@ -79,6 +83,18 @@ public class MainActivityHome extends AppCompatActivity {
 
 
     }
+    public void buscarInformacoesGPS() {
+
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED &&
+                ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+
+            ActivityCompat.requestPermissions(MainActivityHome.this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 1);
+            ActivityCompat.requestPermissions(MainActivityHome.this, new String[]{Manifest.permission.ACCESS_COARSE_LOCATION}, 1);
+            ActivityCompat.requestPermissions(MainActivityHome.this, new String[]{Manifest.permission.ACCESS_NETWORK_STATE}, 1);
+            return;
+        }
+    }
+
     @Override
     protected void onStart(){
         super.onStart();
@@ -96,6 +112,10 @@ public class MainActivityHome extends AppCompatActivity {
                     usuario.addSaldo(saldo);
                     usuario.setuId(usuarioID);
                     usuario.setEmail(documentSnapshot.getString("email"));
+                    usuario.setLatitude(documentSnapshot.getString("latitude"));
+                    usuario.setLongitude(documentSnapshot.getString("longitude"));
+
+
                 }
             }
         });

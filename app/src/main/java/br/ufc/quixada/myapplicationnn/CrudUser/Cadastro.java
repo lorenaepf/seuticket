@@ -137,6 +137,8 @@ public class Cadastro extends AppCompatActivity implements UsuarioDB {
         usuarios.put("saldo","0");
         usuarios.put("favoritos",fav);
         usuarios.put("comprados",comprados);
+        usuarios.put("latitude","0");
+        usuarios.put("longitude","0");
 
         usuarioID = FirebaseAuth.getInstance().getCurrentUser().getUid();
 

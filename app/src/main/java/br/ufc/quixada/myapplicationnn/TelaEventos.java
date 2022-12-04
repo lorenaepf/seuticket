@@ -85,10 +85,12 @@ public class TelaEventos extends AppCompatActivity {
     }
 
     private void verificaAdm() {
-        if(adm.equals("anderson@gmail.com")){
+        if(adm.equals("a@gmail.com")){
+            //o adm edita com click e deleta com long click
             editaEvento();
             deleteEvento();
         }else{
+            //o usuario comum compra com click e favorita com long click
             compra();
             favoritar();
             btnVolta.setVisibility(View.INVISIBLE);

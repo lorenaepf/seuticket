@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -34,6 +35,7 @@ import br.ufc.quixada.myapplicationnn.DAO.DAOUsuario;
 import br.ufc.quixada.myapplicationnn.Entidades.Evento;
 import br.ufc.quixada.myapplicationnn.Entidades.Usuario;
 import br.ufc.quixada.myapplicationnn.MainActivity;
+import br.ufc.quixada.myapplicationnn.Maps;
 import br.ufc.quixada.myapplicationnn.R;
 import br.ufc.quixada.myapplicationnn.TelaEventos;
 
@@ -46,6 +48,7 @@ public class Perfil extends Fragment implements Serializable{
 
     TextView textEmail,textNome,textSenha;
     TextView btnEditUser,btnCadEvento,btnEditEvento,btnDeleteUser,sair;
+    ImageView position;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -107,6 +110,7 @@ public class Perfil extends Fragment implements Serializable{
         textNome = v.findViewById(R.id.nomePerfil);
         textSenha = v.findViewById(R.id.texTelaSenha);
         sair = v.findViewById(R.id.logout);
+        position = v.findViewById(R.id.gps);
 
 
         textEmail.setText(mParam1.getEmail());
@@ -117,10 +121,23 @@ public class Perfil extends Fragment implements Serializable{
         editUser();
         cadEvento();
         editEvento();
+        gps();
         logOut();
        // deleteUser();
 
         return v;
+    }
+
+    private void gps() {
+        position.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(), Maps.class);
+                intent.putExtra("latitude",mParam1.getLatitude());
+                intent.putExtra("longitude",mParam1.getLongitude());
+                startActivity(intent);
+            }
+        });
     }
 
 
@@ -209,7 +226,7 @@ public class Perfil extends Fragment implements Serializable{
     }
 
     public void cadEvento() {
-        if(mParam1.getEmail().equals("anderson@gmail.com")){
+        if(mParam1.getEmail().equals("a@gmail.com")){
             btnCadEvento.setVisibility(View.VISIBLE);
         }else{
             btnCadEvento.setVisibility(View.INVISIBLE);
@@ -227,7 +244,7 @@ public class Perfil extends Fragment implements Serializable{
 
 
     public void editEvento(){
-        if(mParam1.getEmail().equals("anderson@gmail.com")){
+        if(mParam1.getEmail().equals("a@gmail.com")){
             btnEditEvento.setVisibility(View.VISIBLE);
             btnEditEvento.setOnClickListener(new View.OnClickListener() {
                 @Override
