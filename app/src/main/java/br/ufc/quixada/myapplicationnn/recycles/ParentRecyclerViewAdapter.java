@@ -1,17 +1,24 @@
 package br.ufc.quixada.myapplicationnn.recycles;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
+import br.ufc.quixada.myapplicationnn.CrudUser.Cadastro;
+import br.ufc.quixada.myapplicationnn.MainActivity;
+import br.ufc.quixada.myapplicationnn.MainActivityHome;
 import br.ufc.quixada.myapplicationnn.R;
+import br.ufc.quixada.myapplicationnn.TelaEventos;
+import br.ufc.quixada.myapplicationnn.fragments.Home;
 
 public class ParentRecyclerViewAdapter extends RecyclerView.Adapter<ParentRecyclerViewAdapter.MyViewHolder> {
     private ArrayList<ParentModel> parentModelArrayList;
@@ -77,10 +84,19 @@ public class ParentRecyclerViewAdapter extends RecyclerView.Adapter<ParentRecycl
             arrayList.add(new ChildModel( R.drawable.infantil,"Infantil"));
             arrayList.add(new ChildModel( R.drawable.teatro,"Teatros"));
             arrayList.add(new ChildModel(R.drawable.festa3,"Ano novo"));
-            ChildRecyclerViewAdapter childRecyclerViewAdapter = new ChildRecyclerViewAdapter(arrayList,holder.childRecyclerView.getContext());
+            ChildRecyclerViewAdapter childRecyclerViewAdapter = new ChildRecyclerViewAdapter(arrayList, holder.childRecyclerView.getContext(), new ChildRecyclerViewAdapter.ItemClick() {
+                @Override
+                public void onItemClick(ChildModel childModel) {
+                    showToast(childModel.getTexto1() + " clicado!");
+                    Intent intent = new Intent(cxt, TelaEventos.class);
+                    cxt.startActivity(intent);
+                }
+            });
+
             holder.childRecyclerView.setAdapter(childRecyclerViewAdapter);
 
         }
+
 
         // added in second child row
         if (parentModelArrayList.get(position).listaEvento().equals("Eventos em destaque")) {
@@ -88,7 +104,15 @@ public class ParentRecyclerViewAdapter extends RecyclerView.Adapter<ParentRecycl
             arrayList1.add(new ChildModel2(R.drawable.rir,"Rock in Rio","Sab, 09 JAN - 20H"));
             arrayList1.add(new ChildModel2(R.drawable.fortal,"Fortal","Sex, 29 MAR - 19H"));
 
-            ChildRecyclerViewAdapter2 childRecyclerViewAdapter = new ChildRecyclerViewAdapter2(arrayList1,holder.childRecyclerView.getContext());
+            ChildRecyclerViewAdapter2 childRecyclerViewAdapter = new ChildRecyclerViewAdapter2(arrayList1, holder.childRecyclerView.getContext(), new ChildRecyclerViewAdapter2.ItemClick() {
+                @Override
+                public void onItemClick(ChildModel2 childModel) {
+                    showToast(childModel.getText1() + " clicado!");
+                    Intent intent = new Intent(cxt, TelaEventos.class);
+//                    intent.putExtra("Evento",childModel.getText1());
+                    cxt.startActivity(intent);
+                }
+            });
             holder.childRecyclerView.setAdapter(childRecyclerViewAdapter);
         }
 
@@ -100,12 +124,26 @@ public class ParentRecyclerViewAdapter extends RecyclerView.Adapter<ParentRecycl
             arrayList2.add(new ChildModel3( R.drawable.bahia,"Bahia"));
             arrayList2.add(new ChildModel3( R.drawable.sc,"Santa Catarina"));
 
-            ChildRecyclerViewAdapter3 childRecyclerViewAdapter = new ChildRecyclerViewAdapter3(arrayList2,holder.childRecyclerView.getContext());
+            ChildRecyclerViewAdapter3 childRecyclerViewAdapter = new ChildRecyclerViewAdapter3(arrayList2, holder.childRecyclerView.getContext(), new ChildRecyclerViewAdapter3.ItemClick() {
+                @Override
+                public void onItemClick(ChildModel3 childModel3) {
+                    showToast(childModel3.getTexto1() + " clicado!");
+                    Intent intent = new Intent(cxt, TelaEventos.class);
+                    cxt.startActivity(intent);
+
+                }
+            });
             holder.childRecyclerView.setAdapter(childRecyclerViewAdapter);
         }
 
     }
     public interface RecyclerViewClickListener{
         void onClick(View v, int position);
+
+    }
+
+    public void showToast(String message){
+        Toast.makeText(cxt, message, Toast.LENGTH_SHORT).show();
+
     }
 }

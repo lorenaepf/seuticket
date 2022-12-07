@@ -16,6 +16,7 @@ import br.ufc.quixada.myapplicationnn.R;
 public class ChildRecyclerViewAdapter2 extends RecyclerView.Adapter<ChildRecyclerViewAdapter2.MyViewHolder> {
     public ArrayList<ChildModel2> childModelArrayList;
     Context cxt;
+    public ItemClick itemClick;
 
     public static class MyViewHolder extends RecyclerView.ViewHolder{
         public ImageView imageView;
@@ -30,9 +31,10 @@ public class ChildRecyclerViewAdapter2 extends RecyclerView.Adapter<ChildRecycle
         }
     }
 
-    public ChildRecyclerViewAdapter2(ArrayList<ChildModel2> arrayList, Context mContext) {
+    public ChildRecyclerViewAdapter2(ArrayList<ChildModel2> arrayList, Context mContext, ItemClick itemClick1) {
         this.cxt = mContext;
         this.childModelArrayList = arrayList;
+        this.itemClick =  itemClick1;
     }
 
     @Override
@@ -47,11 +49,18 @@ public class ChildRecyclerViewAdapter2 extends RecyclerView.Adapter<ChildRecycle
         holder.imageView.setImageResource(currentItem.getImageview1());
         holder.txt.setText(currentItem.getText1());
         holder.subtxt.setText(currentItem.getText2());
+        holder.itemView.setOnClickListener(view -> {
+            itemClick.onItemClick(childModelArrayList.get(position));
+        });
 
     }
 
     @Override
     public int getItemCount() {
         return childModelArrayList.size();
+    }
+    public interface ItemClick{
+        void onItemClick(ChildModel2 childModel);
+
     }
 }

@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -19,8 +20,9 @@ import br.ufc.quixada.myapplicationnn.Entidades.Evento;
 public class Compra extends AppCompatActivity {
     Evento evento;
     //    EditText ingressoText;
-    TextView qtd,ingressoText;
+    TextView qtd,ingressoText,valorTxt;
     Float valorIngresso;
+    ImageView volta;
 
     String id = FirebaseAuth.getInstance().getCurrentUser().getUid();
     FirebaseFirestore db = FirebaseFirestore.getInstance();
@@ -35,6 +37,8 @@ public class Compra extends AppCompatActivity {
         ingressoText = findViewById(R.id.ingresso);
         qtd = findViewById(R.id.qtdIngresso);
         btn_Compra = findViewById(R.id.btnCompra);
+        valorTxt = findViewById(R.id.valorIngresso);
+        volta = findViewById(R.id.btnVoltaTela);
 
         btn_Compra.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -52,9 +56,12 @@ public class Compra extends AppCompatActivity {
 
     }
 
+
     public void preencheCampo(){
-        ingressoText.setText(evento.getNomeEvento()+"\n"+evento.getData()+"\nValor: "+evento.getValor());
+        ingressoText.setText(evento.getNomeEvento()+"\n"+ "Data: " + evento.getData());
+        valorTxt.setText("R$ " + evento.getValor());
     }
+
     public void compraIngresso(){
         valorIngresso = Float.parseFloat(evento.getValor());
         valorIngresso *= Float.parseFloat(qtd.getText().toString());

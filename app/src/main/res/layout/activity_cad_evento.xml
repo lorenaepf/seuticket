@@ -12,20 +12,42 @@
         android:orientation="vertical">
 
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:padding="5dp"
+                android:background="@color/cardview_shadow_start_color">
+
+                <ImageView
+                    android:layout_marginTop="2dp"
+                    android:padding="3dp"
+                    android:id="@+id/btnVoltaPerfil"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+
+                    android:src="@drawable/ic_baseline_arrow_back_ios_24" />
+            </LinearLayout>
+
             <TextView
-                android:id="@+id/voltaCad"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Volta" />
+                android:layout_marginTop="10dp"
+                android:layout_marginStart="10dp"
+                android:id="@+id/textView7"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="Cadastrar Evento"
+                android:fontFamily="@font/amaranth"
+                android:textSize="30dp"/>
         </LinearLayout>
 
         <LinearLayout
+            android:layout_marginTop="10dp"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:orientation="vertical">
 
@@ -35,12 +57,15 @@
                 android:orientation="horizontal">
 
                 <EditText
-                    android:layout_margin="5dp"
+
+
+                    android:layout_margin="10dp"
                     android:id="@+id/EdtNomeEvento"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
-
+                    android:background="@color/cardview_shadow_start_color"
+                    android:padding="10dp"
                     android:hint="Nome"
                     android:inputType="textPersonName" />
             </LinearLayout>
@@ -53,6 +78,9 @@
                 android:orientation="horizontal">
 
                 <EditText
+                    android:layout_margin="5dp"
+                    android:background="@color/cardview_shadow_start_color"
+                    android:padding="10dp"
                     android:id="@+id/CadData"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -62,6 +90,10 @@
                     android:inputType="textPersonName" />
 
                 <EditText
+                    android:layout_margin="5dp"
+
+                    android:background="@color/cardview_shadow_start_color"
+                    android:padding="10dp"
                     android:id="@+id/CadHora"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -80,15 +112,23 @@
                 android:layout_margin="5dp">
 
                 <EditText
+                    android:layout_margin="5dp"
+
+                    android:background="@color/cardview_shadow_start_color"
+                    android:padding="10dp"
                     android:id="@+id/Edtcidade"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
 
-                    android:ems="15"
+                    android:ems="14"
                     android:hint="Cidade do Evento"
                     android:inputType="textPersonName" />
 
                 <EditText
+                    android:layout_margin="5dp"
+
+                    android:background="@color/cardview_shadow_start_color"
+                    android:padding="10dp"
                     android:id="@+id/Edtestado"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -106,15 +146,23 @@
                 android:orientation="horizontal">
 
                 <EditText
+                    android:layout_margin="5dp"
+
+                    android:background="@color/cardview_shadow_start_color"
+                    android:padding="10dp"
                     android:id="@+id/EdtvalorTicket"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
 
                     android:ems="10"
-                    android:hint="Ticket Médio"
+                    android:hint="Valor"
                     android:inputType="textPersonName" />
 
                 <EditText
+                    android:layout_margin="5dp"
+
+                    android:background="@color/cardview_shadow_start_color"
+                    android:padding="10dp"
                     android:id="@+id/Edttipo"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -125,10 +173,15 @@
 
             <Button
                 android:id="@+id/btnCadEvento"
+                android:layout_marginTop="5dp"
+                android:padding="10dp"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:text="Enviar" />
+                android:layout_height="40dp"
+                android:text="Cadastrar evento"
+                android:layout_gravity="left"
+                android:layout_marginStart="10dp"/>
+<!--                android:background="@drawable/button"-->
+
 
         </LinearLayout>
     </LinearLayout>

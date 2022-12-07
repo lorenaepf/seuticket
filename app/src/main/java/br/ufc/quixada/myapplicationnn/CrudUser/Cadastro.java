@@ -50,7 +50,6 @@ public class Cadastro extends AppCompatActivity implements UsuarioDB {
     String usuarioID;
 
     ArrayList<Evento> fav = new ArrayList<>();
-    ArrayList<Evento> comprados = new ArrayList<Evento>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -136,7 +135,6 @@ public class Cadastro extends AppCompatActivity implements UsuarioDB {
         usuarios.put("email",emailTxt);
         usuarios.put("saldo","0");
         usuarios.put("favoritos",fav);
-        usuarios.put("comprados",comprados);
         usuarios.put("latitude","0");
         usuarios.put("longitude","0");
 

@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -16,11 +17,13 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 
 import br.ufc.quixada.myapplicationnn.R;
+import br.ufc.quixada.myapplicationnn.fragments.Perfil;
 
 
 public class EditarSenha extends AppCompatActivity {
     EditText EmailText;
     Button button;
+    ImageView voltar;
 
     private FirebaseAuth firebaseAuth;
 
@@ -29,6 +32,7 @@ public class EditarSenha extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_editar_senha);
 
+        voltar = findViewById(R.id.btnVoltaPerfil);
         EmailText = findViewById(R.id.changeSenha);
         button = findViewById(R.id.btnChangeSenha);
 
@@ -41,6 +45,14 @@ public class EditarSenha extends AppCompatActivity {
 
                 openFragment(EmailReset);
 
+            }
+        });
+
+        voltar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(EditarSenha.this, Perfil.class);
+                startActivity(intent);
             }
         });
 

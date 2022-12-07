@@ -7,16 +7,26 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
-import androidx.annotation.Nullable;
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentSnapshot;
-import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.FirebaseFirestoreException;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.reflect.TypeToken;
+import com.google.gson.stream.JsonReader;
 
+import java.lang.reflect.Type;
 import java.util.ArrayList;
+import java.util.Collection;
 
 import br.ufc.quixada.myapplicationnn.DAO.DAOFavoritos;
 import br.ufc.quixada.myapplicationnn.Entidades.Evento;
@@ -36,7 +46,8 @@ public class Favoritos extends Fragment {
 
     DAOFavoritos daoFavoritos = new DAOFavoritos();
     ArrayList<Evento> favoritos = new ArrayList<>();
-    ArrayList<String> lau = new ArrayList<>();
+    ArrayList<Evento> langList = new ArrayList<>();
+
 
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     String idUser = FirebaseAuth.getInstance().getCurrentUser().getUid();
@@ -90,26 +101,22 @@ public class Favoritos extends Fragment {
     }
 
     private void recuperaDados() {
-        Evento scrr = new Evento();
 
-        db.collection("usuarios").document(idUser).addSnapshotListener(new EventListener<DocumentSnapshot>() {
+        db.collection("usuarios").document(idUser).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override
-            public void onEvent(@Nullable DocumentSnapshot value, @Nullable FirebaseFirestoreException error) {
-                if(value != null){
-                    String teste[] = value.get("favoritos").toString().split(",");
-                    for(String p : teste){
-                        if(p.contains("nomeEvento")){
-                            scrr.setNomeEvento(p.replaceAll("nomeEvento=",""));
-                            favoritos.add(scrr);
-                        }
-                    }
-                    atualizaAdapter();
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                if(task.isSuccessful()){
+                    Gson gson = new GsonBuilder().create();
+                    Type collectionType = new TypeToken<Collection<Evento>>(){}.getType();
+                    Collection<Evento> enums = gson.fromJson(String.valueOf(task.getResult().get("favoritos")), collectionType);
+
+                    System.out.println("teste: "+enums);
                 }
             }
-//a@gmail.com
         });
 
     }
+
     public void atualizaAdapter(){
         adapter = new ArrayAdapter(getActivity(), android.R.layout.simple_list_item_1,favoritos);
         listFavoritos.setAdapter(adapter);

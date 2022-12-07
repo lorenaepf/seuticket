@@ -11,8 +11,8 @@ import android.text.TextWatcher;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -20,10 +20,6 @@ import android.widget.Toast;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.Query;
-import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
@@ -31,10 +27,7 @@ import com.google.firebase.firestore.QuerySnapshot;
 import java.util.ArrayList;
 
 import br.ufc.quixada.myapplicationnn.CrudEvento.EditEvento;
-import br.ufc.quixada.myapplicationnn.DAO.DAOEvento;
 import br.ufc.quixada.myapplicationnn.Entidades.Evento;
-import br.ufc.quixada.myapplicationnn.Entidades.Usuario;
-import br.ufc.quixada.myapplicationnn.fragments.Favoritos;
 
 public class TelaEventos extends AppCompatActivity {
 
@@ -49,7 +42,7 @@ public class TelaEventos extends AppCompatActivity {
     String idUser = FirebaseAuth.getInstance().getCurrentUser().getUid();
     String adm = FirebaseAuth.getInstance().getCurrentUser().getEmail();
 
-    Button btnVolta;
+    ImageView btnVolta;
 
     int id;
 
@@ -63,7 +56,7 @@ public class TelaEventos extends AppCompatActivity {
         setContentView(R.layout.activity_tela_eventos);
 
         procurar = findViewById(R.id.search);
-        btnVolta = findViewById(R.id.btnVoltaLista);
+        btnVolta = findViewById(R.id.btnVoltaPerfil);
 
         adapter = new ArrayAdapter(TelaEventos.this, android.R.layout.simple_list_item_1, eventos);
         listEventos = findViewById(R.id.listEventos);
@@ -73,6 +66,7 @@ public class TelaEventos extends AppCompatActivity {
         verificaAdm();
         busca();
         recuperaDados();
+
 
             btnVolta.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -93,7 +87,6 @@ public class TelaEventos extends AppCompatActivity {
             //o usuario comum compra com click e favorita com long click
             compra();
             favoritar();
-            btnVolta.setVisibility(View.INVISIBLE);
         }
     }
 
@@ -183,7 +176,7 @@ public class TelaEventos extends AppCompatActivity {
         procurar.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
+                adapter.getFilter().filter(charSequence);
             }
 
             @Override

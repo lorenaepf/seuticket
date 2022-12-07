@@ -9,12 +9,11 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
+import android.widget.ImageView;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.io.Serializable;
@@ -23,9 +22,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 
-import br.ufc.quixada.myapplicationnn.DAO.DAOEvento;
 import br.ufc.quixada.myapplicationnn.Entidades.Evento;
-import br.ufc.quixada.myapplicationnn.Entidades.Usuario;
 import br.ufc.quixada.myapplicationnn.R;
 import br.ufc.quixada.myapplicationnn.TelaEventos;
 
@@ -34,7 +31,7 @@ public class CadEvento extends AppCompatActivity implements Serializable {
     EditText nomeText,dataText,horaText,cidadeText,estadoText,valorText,tipoText;
     Button button;
     ArrayList<Evento> lau = new ArrayList<>();
-    TextView volta;
+    ImageView volta;
     String id;
 
     FirebaseFirestore db = FirebaseFirestore.getInstance();
@@ -56,7 +53,7 @@ public class CadEvento extends AppCompatActivity implements Serializable {
         valorText = findViewById(R.id.EdtvalorTicket);
         tipoText = findViewById(R.id.Edttipo);
         button = findViewById(R.id.btnCadEvento);
-        volta = findViewById(R.id.voltaCad);
+        volta = findViewById(R.id.btnVoltaPerfil);
 
         Intent intent = getIntent();
 
