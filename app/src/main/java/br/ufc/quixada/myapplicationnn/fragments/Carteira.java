@@ -1,5 +1,8 @@
 package br.ufc.quixada.myapplicationnn.fragments;
 
+import android.annotation.SuppressLint;
+import android.graphics.drawable.ColorDrawable;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -30,7 +33,7 @@ public class Carteira extends Fragment {
     // TODO: Rename and change types of parameters
     private Usuario mParam1;
     TextView addValor, valor;
-    ImageView credit,debit;
+    ImageView credit,debit,eye;
     float saldoAtual = 0;
     static FirebaseFirestore db;
 
@@ -66,14 +69,40 @@ public class Carteira extends Fragment {
          addValor = v.findViewById(R.id.addSaldo);
          credit = v.findViewById(R.id.credito);
          debit = v.findViewById(R.id.debito);
+         eye = v.findViewById(R.id.olho);
          valor = v.findViewById(R.id.value);
          String saldo = String.valueOf(mParam1.getConta().getSaldo());
          valor.setText(saldo);
 
          adicionaSaldo();
+         escondeSaldo();
 
         return v;
     }
+    boolean visible = true;
+    private void escondeSaldo() {
+        eye.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View view) {
+                if(visible){
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                        valor.setForeground(new ColorDrawable(getResources().getColor(R.color.black)));
+                    }
+                    eye.setImageResource(R.drawable.ic_baseline_visibility_off_24);
+                    visible = false;
+                }else{
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                        valor.setForeground(null);
+                    }
+                    visible = true;
+                    eye.setImageResource(R.drawable.ic_baseline_remove_red_eye_24);
+                }
+
+            }
+        });
+    }
+
     public void adicionaSaldo(){
             credit.setOnClickListener(new View.OnClickListener() {
                 @Override
